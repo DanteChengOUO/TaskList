@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  sort: 1
+  start: 
+  end: 
+  status: MyString
+  context: MyText
+  tag: MyString
+
+two:
+  name: MyString
+  sort: 1
+  start: 
+  end: 
+  status: MyString
+  context: MyText
+  tag: MyString
