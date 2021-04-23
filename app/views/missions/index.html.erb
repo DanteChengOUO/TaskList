@@ -1,0 +1,17 @@
+<h1>任務列表</h1>
+
+<%= link_to "新增任務",new_mission_path %>
+
+<ul>
+  <% @mission.each do |mission| %>
+    <li>
+    <br>
+      <%= link_to '編輯' , edit_mission_path(mission) %>
+      <%= link_to '刪除' , mission_path(mission),
+                          method: :delete,
+                          data: { confirm: '確認刪除？'} %>
+      <%= link_to mission.name  , mission_path(mission)%>
+    </li>
+  <% end %> 
+</ul>
+

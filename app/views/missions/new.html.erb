@@ -1,0 +1,30 @@
+<h1>新增任務</h1>
+
+  <%= form_for(@mission) do |f|%>
+  <%= f.label '任務名稱' %>
+  <%= f.text_field :name %>
+  <br>
+  <br>
+  <%= f.label '任務內容' %>
+  <%= f.text_area :context %>
+  <br>
+  <br>
+  <%= f.label '優先程度' %>
+  <%= f.text_field :sort %>
+  <br>
+  <br>
+  <%= f.label '任務標籤' %>
+  <%= f.text_field :tag %>
+  <br>
+  <br>
+  <%= f.label '開始時間' %>
+  <%= f.datetime_field :start %>
+  <br>
+  <br>
+  <%= f.label '結束時間' %>
+  <%= f.datetime_field :end %>
+  <br>
+  <br>
+  <%= f.submit '送出' %>
+
+<% end %>
