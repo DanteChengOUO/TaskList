@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+model
 
-Things you may want to cover:
+- schema
+  Refer to docs/ERD.png for a copy of [ERD](https://lucid.app/lucidchart/invitations/accept/inv_891a8c39-ff82-4cfc-b75c-4f3c438283bd?viewport_loc=-72%2C-277%2C1707%2C780%2C0_0).
 
-* Ruby version
+  - missions
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    - id: bigint
+    - title: string
+    - content: text
+    - started_at: datetime
+    - ended_at: datetime
