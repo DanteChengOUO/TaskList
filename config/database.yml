@@ -5,7 +5,7 @@ default: &default
 
 development:
   <<: *default
-  database: db/task_list_development
+  database: task_list_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -13,8 +13,8 @@ development:
 
 test:
   <<: *default
-  database: db/task_list_test
+  database: task_list_test
 
 production:
   <<: *default
-  database: db/task_list_production
+  database: task_list_production
