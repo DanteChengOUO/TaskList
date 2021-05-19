@@ -5,7 +5,6 @@ class CreateMissions < ActiveRecord::Migration[6.0]
       t.text :content, null: false
       t.datetime :started_at
       t.datetime :ended_at
-      t.bigint :users_id
 
       t.timestamps
     end
