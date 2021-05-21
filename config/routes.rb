@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "missions#index"
+  root 'missions#index'
 
-  resources :missions
+  resources :missions, except: [:show]
 end

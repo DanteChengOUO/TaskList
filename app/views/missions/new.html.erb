@@ -1,17 +1,17 @@
 <h1>任務新增</h1>
 
 <%= form_for(@mission) do |input| %>
-<%= input.label :title %>
-<%= input.text_field :title %>
-<br>
-<%= input.label :content %>
-<%= input.text_field :content %>
-<br>
-<%= input.label :started_at %>
-<%= input.datetime_field :started_at %>
-<br>
-<%= input.label :ended_at %>
-<%= input.datetime_field :ended_at %>
-<br>
-<%= input.submit "建立任務" %>
+  <%= input.label :title %>
+  <%= input.text_field :title %>
+  <br>
+  <%= input.label :content %>
+  <%= input.text_field :content %>
+  <br>
+  <%= input.label :started_at %>
+  <%= input.datetime_field :started_at %>
+  <br>
+  <%= input.label :ended_at %>
+  <%= input.datetime_field :ended_at %>
+  <br>
+  <%= input.submit '建立任務' %>
 <% end %>
