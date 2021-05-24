@@ -15,6 +15,7 @@ class MissionsController < ApplicationController
     if @mission.save
       redirect_to root_path, notice: '新增任務成功'
     else
+      flash.now[:notice] = '任務新增失敗'
       render :new
     end
   end
@@ -25,7 +26,8 @@ class MissionsController < ApplicationController
     if @mission.update(mission_params)
       redirect_to root_path, notice: '任務更新成功'
     else
-      render :edit, notice: '任務更新失敗'
+      flash.now[:notice] = '任務更新失敗'
+      render :edit
     end
   end
 
