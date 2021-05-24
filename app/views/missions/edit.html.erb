@@ -1,0 +1,17 @@
+<h1>任務修改</h1>
+
+<%= form_for(@mission) do |form| %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+  <br>
+  <%= form.label :content %>
+  <%= form.text_field :content %>
+  <br>
+  <%= form.label :started_at %>
+  <%= form.datetime_field :started_at %>
+  <br>
+  <%= form.label :ended_at %>
+  <%= form.datetime_field :ended_at %>
+  <br>
+  <%= form.submit '修改任務' %>
+<% end %>
