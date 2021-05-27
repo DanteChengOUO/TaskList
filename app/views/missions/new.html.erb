@@ -1,5 +1,13 @@
 <h1>任務新增</h1>
 
+<% if @mission.errors.any? %>
+  <ul>
+    <% @mission.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_for(@mission) do |input| %>
   <%= input.label :title %>
   <%= input.text_field :title %>
