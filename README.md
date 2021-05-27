@@ -12,3 +12,12 @@ model
     - content: text
     - started_at: datetime
     - ended_at: datetime
+
+## Getting Started
+### Development
+- TODO: add rundown for development
+
+- Set up Git hook
+```sh
+$ bundle exec overcommit --install
+```
