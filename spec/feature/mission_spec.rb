@@ -25,5 +25,30 @@ RSpec.describe 'Visit mission path', type: :feature do
       is_expected.to have_content('任務列表')
       is_expected.to have_content('新增任務')
     end
+  end  
+
+  context 'when goes to page for creating missions' do
+    before do
+      visit new_mission_path
+    end
+    
+    it 'has label' do
+      is_expected.to have_content('任務新增')
+      is_expected.to have_content('Title')
+      is_expected.to have_content('Content')
+      is_expected.to have_content('Started at')
+      is_expected.to have_content('Ended at')
+    end
+
+    it 'has text_field' do
+      is_expected.to have_field(id: 'mission_title')
+      is_expected.to have_field(id: 'mission_content')
+      is_expected.to have_field(id: 'mission_started_at')
+      is_expected.to have_field(id: 'mission_ended_at')
+    end
+
+    it 'has button' do
+      is_expected.to have_button('建立任務')
+    end
   end
 end
