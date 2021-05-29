@@ -45,13 +45,10 @@ group :development do
 end
 
 group :test do
-  gem 'selenium-webdriver'
   gem 'capybara', '~> 3.35.3'
-  gem "factory_bot_rails", '~> 6.2'
-  gem 'rspec-rails', '~> 5.0'
+  gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 2.18'
+  gem 'rspec-rails', '~> 5.0'
+  gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
