@@ -6,11 +6,15 @@ AllCops:
   NewCops: enable
   SuggestExtensions: false
   Exclude:
-    - 'Rakefile'
-    - 'db/**/*'
-    - 'vendor/**/*'
-    - 'bin/*'
-    - 'node_modules/**/*'
+    - "Rakefile"
+    - "db/**/*"
+    - "vendor/**/*"
+    - "bin/*"
+    - "node_modules/**/*"
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/feature/*"
 
 Style/Documentation:
   Enabled: false
