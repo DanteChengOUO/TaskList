@@ -8,10 +8,12 @@ install:
   - yarn
 services:
   - postgresql
-script:
+before_script:
   - bundle exec rails db:create
   - bundle exec rails db:migrate
+script:
   - bundle exec rspec
+  - bundle exec rubocop
 cache:
   - bundler
   - nvm
