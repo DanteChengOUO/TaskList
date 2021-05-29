@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MissionsController < ApplicationController
   before_action :find_mission, only: %i[edit update destroy]
 

@@ -1,0 +1,16 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.7x
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - 'Rakefile'
+    - 'db/**/*'
+    - 'vendor/**/*'
+    - 'bin/*'
+    - 'node_modules/**/*'
+
+Style/Documentation:
+  Enabled: false
