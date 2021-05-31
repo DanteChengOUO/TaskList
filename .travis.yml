@@ -1,0 +1,20 @@
+language: ruby
+rvm:
+  - 2.7.0
+install:
+  - bundle install
+  - nvm install 14
+  - npm i -g yarn
+  - yarn
+services:
+  - postgresql
+before_script:
+  - bundle exec rails db:create
+  - bundle exec rails db:migrate
+script:
+  - bundle exec rspec
+  - bundle exec rubocop
+cache:
+  - bundler
+  - nvm
+  - yarn
