@@ -4,10 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Missions List', type: :feature do
   def fill_in_form(mission)
-    fill_in 'Title', with: mission.title
-    fill_in 'Content', with: mission.content
-    fill_in 'Started at', with: mission.started_at
-    fill_in 'Ended at', with: mission.ended_at
+    fill_in Mission.human_attribute_name(:title), with: mission.title
+    fill_in Mission.human_attribute_name(:content), with: mission.content
+    fill_in Mission.human_attribute_name(:started_at), with: mission.started_at
+    fill_in Mission.human_attribute_name(:ended_at), with: mission.ended_at
   end
 
   subject { page }
@@ -32,7 +32,7 @@ RSpec.describe 'Missions List', type: :feature do
     before do
       visit new_mission_path
       fill_in_form(mission)
-      click_button '建立任務'
+      click_button I18n.t('missions.button.submit')
     end
 
     it_behaves_like 'a missions list page'
@@ -46,7 +46,7 @@ RSpec.describe 'Missions List', type: :feature do
       to_be_updated_mission = create(:mission)
       visit edit_mission_path(to_be_updated_mission)
       fill_in_form(mission)
-      click_button '修改任務'
+      click_button I18n.t('missions.button.submit')
     end
 
     it_behaves_like 'a missions list page'
