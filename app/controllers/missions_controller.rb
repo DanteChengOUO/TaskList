@@ -15,9 +15,9 @@ class MissionsController < ApplicationController
     @mission = Mission.new(mission_params)
 
     if @mission.save
-      redirect_to root_path, notice: '新增任務成功'
+      redirect_to root_path, notice: t('.success')
     else
-      flash.now[:notice] = '任務新增失敗'
+      flash.now[:notice] = t('.failure')
       render :new
     end
   end
@@ -26,18 +26,18 @@ class MissionsController < ApplicationController
 
   def update
     if @mission.update(mission_params)
-      redirect_to root_path, notice: '任務更新成功'
+      redirect_to root_path, notice: t('.success')
     else
-      flash.now[:notice] = '任務更新失敗'
+      flash.now[:notice] = t('.failure')
       render :edit
     end
   end
 
   def destroy
     if @mission.destroy
-      redirect_to root_path, notice: '任務已刪除'
+      redirect_to root_path, notice: t('.success')
     else
-      redirect_to root_path, notice: '任務刪除失敗'
+      redirect_to root_path, notice: t('.failure')
     end
   end
 
