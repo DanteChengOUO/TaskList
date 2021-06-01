@@ -1,13 +1,13 @@
 <h1><%= t('.title') %></h1>
 <%= link_to t('.link.create'), new_mission_path %>
 <%= form_tag(missions_path, method: 'get') do %>
-  <%= label_tag(:field, '排序標準：') %>
-  <%= select_tag(:field, options_for_select([['結束時間', :ended_at], ['建立時間', :created_at]], params[:field])) %>
+  <%= label_tag(:field, t('.field')) %>
+  <%= select_tag(:field, options_for_select([[Mission.human_attribute_name(:created_at), :created_at]], params[:field])) %>
   <br>
-  <%= label_tag(:order, '排序方式：') %>
-  <%= select_tag(:order, options_for_select([['升冪', :ASC], ['降冪', :DESC]], params[:order])) %>
+  <%= label_tag(:order, t('.order')) %>
+  <%= select_tag(:order, options_for_select([[t('.descending'), :DESC], [t('.ascending'), :ASC]], params[:order])) %>
   <br>
-  <%= submit_tag('排序') %>
+  <%= submit_tag(t('.submit')) %>
 <% end %>
 
 <ul>
@@ -17,9 +17,9 @@
       <%= link_to t('.link.delete'), mission_path(mission), method: :delete, data: { confirm: t('.alert.deletion') } %>
       <%= mission.title %>
       <%= mission.content %>
-      <%= l(mission.started_at, time: :default) %>
-      <%= l(mission.ended_at, time: :default) %>
-      <%= mission.created_at.strftime('%Y/%m/%d %H:%M') %>
+      <%= l(mission.started_at, time: :default) if mission.started_at %>
+      <%= l(mission.ended_at, time: :default) if mission.ended_at %>
+      <%= l(mission.created_at, time: :default) %>
     </li>
   <% end %>
 </ul>
