@@ -1,4 +1,4 @@
-<h1>任務新增</h1>
+<h1><%= t('.title') %></h1>
 
 <% if @mission.errors.any? %>
   <ul>
@@ -8,18 +8,18 @@
   </ul>
 <% end %>
 
-<%= form_for(@mission) do |input| %>
-  <%= input.label :title %>
-  <%= input.text_field :title %>
+<%= form_for(@mission) do |form| %>
+  <%= form.label :title, Mission.human_attribute_name(:title) %>
+  <%= form.text_field :title %>
   <br>
-  <%= input.label :content %>
-  <%= input.text_field :content %>
+  <%= form.label :content, Mission.human_attribute_name(:content) %>
+  <%= form.text_field :content %>
   <br>
-  <%= input.label :started_at %>
-  <%= input.datetime_field :started_at %>
+  <%= form.label :started_at, Mission.human_attribute_name(:started_at) %>
+  <%= form.datetime_field :started_at %>
   <br>
-  <%= input.label :ended_at %>
-  <%= input.datetime_field :ended_at %>
+  <%= form.label :ended_at, Mission.human_attribute_name(:ended_at) %>
+  <%= form.datetime_field :ended_at %>
   <br>
-  <%= input.submit '建立任務' %>
+  <%= form.submit t('.submit') %>
 <% end %>

@@ -1,0 +1,40 @@
+zh-TW:
+  activerecord:
+    models:
+      mission: Mission
+    attributes:
+      mission:
+        title: 標題
+        content: 內容
+        started_at: 開始時間
+        ended_at: 結束時間
+
+  missions:
+    button: &button
+      submit: 送出
+    index:
+      title: 任務列表
+      link:
+        create: 新增任務
+        edit: 修改
+        delete: 刪除
+      alert:
+        deletion: 確認刪除？
+    new:
+      title: 新增任務
+      <<: *button
+    edit:
+      title: 修改任務
+      <<: *button
+    create:
+      success: 任務新增成功
+      failure: 任務新增失敗
+    update:
+      success: 任務修改成功
+      failure: 任務修改失敗
+    destroy:
+      success: 任務已刪除
+      failure: 任務刪除失敗
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"

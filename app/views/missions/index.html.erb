@@ -1,14 +1,14 @@
-<h1>任務列表</h1>
-<%= link_to '新增任務', new_mission_path %>
+<h1><%= t('.title') %></h1>
+<%= link_to t('.link.create'), new_mission_path %>
 <ul>
   <% @missions.each do |mission| %>
     <li>
-      <%= link_to '修改任務', edit_mission_path(mission) %>
-      <%= link_to '刪除任務', mission_path(mission), method: :delete, data: { confirm: '確認刪除?' } %>
+      <%= link_to t('.link.edit'), edit_mission_path(mission) %>
+      <%= link_to t('.link.delete'), mission_path(mission), method: :delete, data: { confirm: t('.alert.deletion') } %>
       <%= mission.title %>
       <%= mission.content %>
-      <%= mission.started_at.strftime('%Y/%m/%d %H:%M') %>
-      <%= mission.ended_at.strftime('%Y/%m/%d %H:%M') %>
+      <%= l(mission.started_at, time: :default) %>
+      <%= l(mission.ended_at, time: :default) %>
     </li>
   <% end %>
 </ul>
