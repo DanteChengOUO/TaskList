@@ -56,7 +56,7 @@ class MissionsController < ApplicationController
     when 'created_at' then @missions = Mission.order(created_at: params[:order])
     when nil then @missions = Mission.order(created_at: :DESC)
     else
-      flash.now[:notice] = '僅提供預設排序'
+      flash.now[:notice] = t('.failure')
       @missions = Mission.order(created_at: :DESC)
     end
   end
