@@ -4,7 +4,7 @@ class MissionsController < ApplicationController
   before_action :find_mission, only: %i[edit update destroy]
 
   def index
-    @missions = Mission.all
+    sort_mission
   end
 
   def new
@@ -49,5 +49,15 @@ class MissionsController < ApplicationController
 
   def find_mission
     @mission = Mission.find(params[:id])
+  end
+
+  def sort_mission
+    case params[:field]
+    when 'created_at' then @missions = Mission.order(created_at: params[:order])
+    when nil then @missions = Mission.order(created_at: :DESC)
+    else
+      flash.now[:notice] = '僅提供預設排序'
+      @missions = Mission.order(created_at: :DESC)
+    end
   end
 end
