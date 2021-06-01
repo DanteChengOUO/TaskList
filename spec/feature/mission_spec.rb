@@ -25,35 +25,35 @@ RSpec.describe 'Missions List', type: :feature do
       it_behaves_like 'a page that shows the missions'
     end
   end
-  
+
   describe 'Sorting mission' do
     let!(:first_mission) { create(:mission) }
     let!(:second_mission) { create(:mission, created_at: DateTime.now + 1, ended_at: DateTime.now + 2) }
     let!(:third_mission) { create(:mission, created_at: DateTime.now + 2, ended_at: DateTime.now + 3) }
-    
+
     context 'when goes to root' do
       before { visit missions_path }
-  
+
       it_behaves_like 'a missions list page'
       it_behaves_like 'a page that shows the missions sort by desc'
     end
 
     context 'when created_at order by desc' do
       before { visit missions_path(field: :created_at, order: :DESC) }
-  
+
       it_behaves_like 'a missions list page'
       it_behaves_like 'a page that shows the missions sort by desc'
     end
-  
+
     context 'when created_at order by asc' do
       before { visit missions_path(field: :created_at, order: :ASC) }
-  
+
       it_behaves_like 'a missions list page'
       it_behaves_like 'a page that shows the missions sort by asc'
     end
-    
+
     context 'when get Unexpected params' do
-      let (:Unexpected) { Faker::String.random }
+      let(:Unexpected) { Faker::String.random }
       before { visit missions_path(field: :Unexpected, order: :Unexpected) }
 
       it_behaves_like 'a missions list page'
