@@ -1,11 +1,6 @@
 language: ruby
 rvm:
   - 2.7.0
-cache:
-  directories:
-    - rvm/gems/ruby-2.7g.0/gems/
-  - nvm
-  - yarn
 install:
   - bundle install
   - nvm install 14
