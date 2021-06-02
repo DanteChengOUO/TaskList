@@ -1,8 +1,10 @@
 language: ruby
 rvm:
   - 2.7.0
+before_install:
+  - bundle config set deployment 'true'
 install:
-  - bundle install --deployment
+  - bundle install
   - nvm install 14
   - npm i -g yarn
   - yarn
