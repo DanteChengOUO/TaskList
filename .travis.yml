@@ -1,14 +1,12 @@
 language: ruby
 rvm:
   - 2.7.0
-before_install:
-  - bundle config set deployment true
-  - bundle config get deployment
 install:
-  - bundle install
+  - bundle install --deployment
   - nvm install 14
   - npm i -g yarn
   - yarn
+  - bundle config get deployment
 services:
   - postgresql
 before_script:
