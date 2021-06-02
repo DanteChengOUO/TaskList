@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 2.7.0
 install:
-  - bundle install
+  - bundle install --deployment
   - nvm install 14
   - npm i -g yarn
   - yarn
@@ -15,5 +15,6 @@ script:
   - bundle exec rspec
   - bundle exec rubocop
 cache:
-  directories:
-    - rvm/gems/ruby-2.7.0/gems/
+  - bundler
+  - nvm
+  - yarn
