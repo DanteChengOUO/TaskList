@@ -3,6 +3,7 @@ rvm:
   - 2.7.0
 before_install:
   - bundle config set deployment true
+  - bundle config get deployment
 install:
   - bundle install
   - nvm install 14
