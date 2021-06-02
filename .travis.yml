@@ -15,7 +15,5 @@ script:
   - bundle exec rspec
   - bundle exec rubocop
 cache:
-  - nvm
-  - yarn
   directories:
     - rvm/gems/ruby-2.7g.0/gems/
