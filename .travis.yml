@@ -16,4 +16,4 @@ script:
   - bundle exec rubocop
 cache:
   directories:
-    - rvm/gems/ruby-2.7g.0/gems/
+    - rvm/gems/ruby-2.7.0/gems/
