@@ -9,6 +9,17 @@ en:
         started_at: Start time
         ended_at: End time
         created_at: Created time
+    errors:
+      models:
+        mission:
+          attributes:
+            ended_at:
+              before_start_time: must be after Start time
+            title:
+              blank: can't be blank.
+              too_long: must be less than 50 characters
+            content:
+              blank: can't be blank.
 
   missions:
     button: &button
