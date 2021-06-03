@@ -4,11 +4,9 @@ shared_examples 'a missions list page' do
   it do
     is_expected.to have_content(I18n.t('missions.index.title'))
     is_expected.to have_content(I18n.t('missions.index.link.create'))
-    is_expected.to have_content('升冪')
-    is_expected.to have_content('降冪')
-    is_expected.to have_content('建立時間')
-    is_expected.to have_content('結束時間')
-    is_expected.to have_content('排序')
+    is_expected.to have_content(I18n.t('missions.index.ascending'))
+    is_expected.to have_content(I18n.t('missions.index.descending'))
+    is_expected.to have_content(Mission.human_attribute_name(:created_at))
   end
 end
 
