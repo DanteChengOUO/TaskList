@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 2.7.0
 install:
-  - bundle install
+  - bundle install --path ./vendor/bundle
   - nvm install 14
   - npm i -g yarn
   - yarn
