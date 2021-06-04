@@ -52,6 +52,20 @@ RSpec.describe 'Missions List', type: :feature do
       it_behaves_like 'a page that shows the missions sort by asc'
     end
 
+    context 'when ended_at order by desc' do
+      before { visit missions_path(field: :ended_at, order: :DESC) }
+
+      it_behaves_like 'a missions list page'
+      it_behaves_like 'a page that shows the missions sort by desc'
+    end
+
+    context 'when ended_at order by asc' do
+      before { visit missions_path(field: :ended_at, order: :ASC) }
+
+      it_behaves_like 'a missions list page'
+      it_behaves_like 'a page that shows the missions sort by asc'
+    end
+
     context 'when both field and order get unexpected params' do
       let(:random_string) { Faker::String.random }
       before { visit missions_path(field: :random_string, order: :random_string) }
