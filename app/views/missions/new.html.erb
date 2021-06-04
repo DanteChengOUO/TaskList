@@ -21,5 +21,13 @@
   <%= form.label :ended_at, Mission.human_attribute_name(:ended_at) %>
   <%= form.datetime_field :ended_at %>
   <br>
+  <%= form.label :status, Mission.human_attribute_name(:status) %>
+  <%= form.select :status, options_for_select(
+                                              [
+                                                [Mission.human_enum_name(:statuses, :pending), :pending],
+                                                [Mission.human_enum_name(:statuses, :processing), :processing],
+                                                [Mission.human_enum_name(:statuses, :completed), :completed]
+                                              ]) %>
+  <br>
   <%= form.submit t('.submit') %>
 <% end %>
