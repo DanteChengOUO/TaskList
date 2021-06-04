@@ -31,8 +31,8 @@ zh-TW:
       submit: 送出
     index:
       title: 任務列表
-      field: 排序標準：
-      order: 排序方式：
+      field: 排序標準
+      order: 排序方式
       ascending: 升冪
       descending: 降冪
       status:
