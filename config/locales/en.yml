@@ -9,6 +9,11 @@ en:
         started_at: Start time
         ended_at: End time
         created_at: Created time
+        status: Status
+        statuses:
+          pending: Pending
+          processing: Processing
+          completed: Completed
     errors:
       models:
         mission:
@@ -30,6 +35,8 @@ en:
       order: "Sorting Way :"
       ascending: Ascending
       descending: Descending
+      status:
+        all: All
       failure: Only provide default sort settings
       <<: *button
       link:
