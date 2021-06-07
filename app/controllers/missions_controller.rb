@@ -4,7 +4,11 @@ class MissionsController < ApplicationController
   before_action :find_mission, only: %i[edit update destroy]
 
   def index
-    @missions = Mission.all
+    if valid_order?(params[:order])
+      sort_missions
+    else
+      sort_missions_with_notice
+    end
   end
 
   def new
@@ -49,5 +53,25 @@ class MissionsController < ApplicationController
 
   def find_mission
     @mission = Mission.find(params[:id])
+  end
+
+  def sort_missions
+    case params[:field]
+    when 'created_at' then @missions = Mission.order(created_at: params[:order])
+    when nil then @missions = Mission.order(created_at: :DESC)
+    else sort_missions_with_notice
+    end
+  end
+
+  def valid_order?(order)
+    valid_orders = ['ASC', 'DESC', nil]
+    return true if valid_orders.include?(order)
+
+    false
+  end
+
+  def sort_missions_with_notice
+    flash.now[:notice] = t('.failure')
+    @missions = Mission.order(created_at: :DESC)
   end
 end

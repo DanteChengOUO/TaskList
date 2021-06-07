@@ -8,12 +8,19 @@ zh-TW:
         content: 內容
         started_at: 開始時間
         ended_at: 結束時間
+        created_at: 建立時間
 
   missions:
     button: &button
       submit: 送出
     index:
       title: 任務列表
+      field: 排序標準：
+      order: 排序方式：
+      ascending: 升冪
+      descending: 降冪
+      failure: 僅提供預設排序
+      <<: *button
       link:
         create: 新增任務
         edit: 修改

@@ -8,12 +8,19 @@ en:
         content: Content
         started_at: Start time
         ended_at: End time
+        created_at: Created time
 
   missions:
     button: &button
       submit: Submit
     index:
       title: Mission List
+      field: "Sorting Field :"
+      order: "Sorting Way :"
+      ascending: Ascending
+      descending: Descending
+      failure: Only provide default sort settings
+      <<: *button
       link:
         create: Create
         edit: Edit

@@ -1,5 +1,15 @@
 <h1><%= t('.title') %></h1>
 <%= link_to t('.link.create'), new_mission_path %>
+<%= form_tag(missions_path, method: 'get') do %>
+  <%= label_tag(:field, t('.field')) %>
+  <%= select_tag(:field, options_for_select([[Mission.human_attribute_name(:created_at), :created_at]], params[:field])) %>
+  <br>
+  <%= label_tag(:order, t('.order')) %>
+  <%= select_tag(:order, options_for_select([[t('.descending'), :DESC], [t('.ascending'), :ASC]], params[:order])) %>
+  <br>
+  <%= submit_tag(t('.submit')) %>
+<% end %>
+
 <ul>
   <% @missions.each do |mission| %>
     <li>
@@ -7,8 +17,9 @@
       <%= link_to t('.link.delete'), mission_path(mission), method: :delete, data: { confirm: t('.alert.deletion') } %>
       <%= mission.title %>
       <%= mission.content %>
-      <%= l(mission.started_at, time: :default) %>
-      <%= l(mission.ended_at, time: :default) %>
+      <%= l(mission.started_at, time: :default) if mission.started_at %>
+      <%= l(mission.ended_at, time: :default) if mission.ended_at %>
+      <%= l(mission.created_at, time: :default) %>
     </li>
   <% end %>
 </ul>
