@@ -15,6 +15,7 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - "spec/feature/*"
+    - "spec/models/*"
 
 Style/Documentation:
   Enabled: false
