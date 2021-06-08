@@ -25,6 +25,8 @@ zh-TW:
               too_long: 必須小於 50 字
             content:
               blank: 是必填欄位
+            status:
+              blank: 是必填欄位
 
   missions:
     button: &button

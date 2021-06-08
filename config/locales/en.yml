@@ -25,6 +25,8 @@ en:
               too_long: must be less than 50 characters
             content:
               blank: can't be blank.
+            status:
+              blank: can't be blank.
 
   missions:
     button: &button
