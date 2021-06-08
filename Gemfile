@@ -47,6 +47,7 @@ end
 
 group :test do
   gem 'capybara', '~> 3.35.3'
+  gem 'database_cleaner-active_record', '~> 2.0'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 2.18'
   gem 'rspec-rails', '~> 5.0'
