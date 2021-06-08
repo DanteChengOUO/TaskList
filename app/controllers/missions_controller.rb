@@ -58,6 +58,7 @@ class MissionsController < ApplicationController
   def sort_missions
     case params[:field]
     when 'created_at' then @missions = Mission.order(created_at: params[:order])
+    when 'ended_at' then @missions = Mission.order(ended_at: params[:order])
     when nil then @missions = Mission.order(created_at: :DESC)
     else sort_missions_with_notice
     end
