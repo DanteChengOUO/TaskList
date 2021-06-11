@@ -53,7 +53,7 @@ class MissionsController < ApplicationController
   private
 
   def mission_params
-    params.require(:mission).permit(:title, :content, :started_at, :ended_at, :status)
+    params.require(:mission).permit(:title, :content, :started_at, :ended_at, :status, :priority)
   end
 
   def find_mission
@@ -62,7 +62,7 @@ class MissionsController < ApplicationController
 
   def valid_order_and_field
     valid_orders = ['ASC', 'DESC', nil]
-    valid_fields = ['created_at', 'ended_at', nil]
+    valid_fields = ['created_at', 'ended_at', 'priority', nil]
     return true if valid_orders.include?(params[:order]) && valid_fields.include?(params[:field])
 
     false
