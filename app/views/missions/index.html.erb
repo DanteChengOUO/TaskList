@@ -5,31 +5,23 @@
   <%= form.label :title, Mission.human_attribute_name(:title) %>
   <%= form.search_field :title_cont_any %>
   <%= form.label :status, Mission.human_attribute_name(:status) %>
-  <%= form.select :status_eq, options_for_select(
-                                                  [
-                                                    [t('.status.all'), nil],
-                                                    [Mission.human_enum_name(:statuses, :pending), 0],
-                                                    [Mission.human_enum_name(:statuses, :processing), 1],
-                                                    [Mission.human_enum_name(:statuses, :completed), 2]
-                                                  ],
-                                                  params[:q].present? ? params[:q][:status_eq] : nil
-                                                  ) %>
+  <%= form.select :status_eq, options_for_select([[t('.status.all'), nil],
+                                                  [Mission.human_enum_name(:statuses, :pending), 0],
+                                                  [Mission.human_enum_name(:statuses, :processing), 1],
+                                                  [Mission.human_enum_name(:statuses, :completed), 2]
+                                                 ],
+                                                 params[:q].present? ? params[:q][:status_eq] : nil) %>
   <%= label_tag(:field, t('.field')) %>
-  <%= select_tag(:field, options_for_select(
-                                            [
-                                              [Mission.human_attribute_name(:created_at), :created_at],
-                                              [Mission.human_attribute_name(:ended_at), :ended_at]
+  <%= select_tag(:field, options_for_select([[Mission.human_attribute_name(:created_at), :created_at],
+                                             [Mission.human_attribute_name(:ended_at), :ended_at],
+                                             [Mission.human_attribute_name(:priority), :priority]
                                             ],
-                                            params[:field]
-                                            )) %>
+                                            params[:field])) %>
   <%= label_tag(:order, t('.order')) %>
-  <%= select_tag(:order, options_for_select(
-                                            [
-                                              [t('.descending'), :DESC],
-                                              [t('.ascending'), :ASC]
+  <%= select_tag(:order, options_for_select([[t('.descending'), :DESC],
+                                             [t('.ascending'), :ASC]
                                             ],
-                                            params[:order]
-                                            )) %>
+                                            params[:order])) %>
   <%= submit_tag(t('.submit')) %>
 <% end %>
 
@@ -40,6 +32,7 @@
       <%= link_to t('.link.delete'), mission_path(mission), method: :delete,
                                                             data: { confirm: t('.alert.deletion') } %>
       <span class="status"><%= Mission.human_enum_name(:statuses, mission.status) %></span>
+      <span class="priority"><%= Mission.human_enum_name(:priorities, mission.priority) %></span>
       <span class="title"><%= mission.title %></span>
       <%= mission.content %>
       <%= l(mission.started_at, time: :default) if mission.started_at %>
