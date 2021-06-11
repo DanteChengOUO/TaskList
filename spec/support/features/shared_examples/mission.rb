@@ -38,9 +38,9 @@ shared_examples 'a page that shows the missions' do
     is_expected.to have_selector('ul > li', text: Mission.human_enum_name(:statuses, mission.status.to_sym))
     is_expected.to have_content(mission.title)
     is_expected.to have_content(mission.content)
-    is_expected.to have_content(mission.started_at.strftime('%Y/%m/%d %H:%M'))
-    is_expected.to have_content(mission.ended_at.strftime('%Y/%m/%d %H:%M'))
-    is_expected.to have_content(mission.created_at.strftime('%Y/%m/%d %H:%M'))
+    is_expected.to have_content(I18n.l(mission.started_at, time: :default))
+    is_expected.to have_content(I18n.l(mission.ended_at, time: :default))
+    is_expected.to have_content(I18n.l(mission.created_at, time: :default))
   end
 end
 
@@ -62,32 +62,32 @@ end
 
 shared_examples 'a page that shows only pending missions' do
   it 'shows the mission' do
-    is_expected.to have_selector('ul > li', text: Mission.human_attribute_name(:pending))
-    is_expected.to have_no_selector('ul > li', text: Mission.human_attribute_name(:processing))
-    is_expected.to have_no_selector('ul > li', text: Mission.human_attribute_name(:completed))
+    is_expected.to have_selector('ul > li', text: Mission.human_enum_name(:statuses, :pending))
+    is_expected.to have_no_selector('ul > li', text: Mission.human_enum_name(:statuses, :processing))
+    is_expected.to have_no_selector('ul > li', text: Mission.human_enum_name(:statuses, :completed))
   end
 end
 
 shared_examples 'a page that shows only processing missions' do
   it 'shows the mission' do
-    is_expected.to have_no_selector('ul > li', text: Mission.human_attribute_name(:pending))
-    is_expected.to have_selector('ul > li', text: Mission.human_attribute_name(:processing))
-    is_expected.to have_no_selector('ul > li', text: Mission.human_attribute_name(:completed))
+    is_expected.to have_no_selector('ul > li', text: Mission.human_enum_name(:statuses, :pending))
+    is_expected.to have_selector('ul > li', text: Mission.human_enum_name(:statuses, :processing))
+    is_expected.to have_no_selector('ul > li', text: Mission.human_enum_name(:statuses, :completed))
   end
 end
 
 shared_examples 'a page that shows only completed missions' do
   it 'shows the mission' do
-    is_expected.to have_no_selector('ul > li', text: Mission.human_attribute_name(:pending))
-    is_expected.to have_no_selector('ul > li', text: Mission.human_attribute_name(:processing))
-    is_expected.to have_selector('ul > li', text: Mission.human_attribute_name(:completed))
+    is_expected.to have_no_selector('ul > li', text: Mission.human_enum_name(:statuses, :pending))
+    is_expected.to have_no_selector('ul > li', text: Mission.human_enum_name(:statuses, :processing))
+    is_expected.to have_selector('ul > li', text: Mission.human_enum_name(:statuses, :completed))
   end
 end
 
 shared_examples 'a page that shows no missions' do
   it 'shows the mission' do
-    is_expected.to have_no_selector('ul > li', text: Mission.human_attribute_name(:pending))
-    is_expected.to have_no_selector('ul > li', text: Mission.human_attribute_name(:processing))
-    is_expected.to have_no_selector('ul > li', text: Mission.human_attribute_name(:completed))
+    is_expected.to have_no_selector('ul > li', text: Mission.human_enum_name(:statuses, :pending))
+    is_expected.to have_no_selector('ul > li', text: Mission.human_enum_name(:statuses, :processing))
+    is_expected.to have_no_selector('ul > li', text: Mission.human_enum_name(:statuses, :completed))
   end
 end

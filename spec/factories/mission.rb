@@ -6,5 +6,6 @@ FactoryBot.define do
     content { Faker::Lorem.paragraph }
     started_at { DateTime.now }
     ended_at { DateTime.now + 1 }
+    created_at { DateTime.now }
   end
 end
