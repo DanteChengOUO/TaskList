@@ -14,19 +14,28 @@ zh-TW:
           pending: 待處理
           processing: 處理中
           completed: 已完成
+        priority: 優先度
+        priorities:
+          low: 低度
+          mid: 中度
+          high: 高度
     errors:
       models:
+        blank: &blank
+          blank: 是必填欄位
         mission:
           attributes:
             ended_at:
               before_start_time: 必須晚於開始時間
             title:
-              blank: 是必填欄位
+              <<: *blank
               too_long: 必須小於 50 字
             content:
-              blank: 是必填欄位
+              <<: *blank
             status:
-              blank: 是必填欄位
+              <<: *blank
+            priority:
+              <<: *blank
 
   missions:
     button: &button
