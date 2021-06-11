@@ -25,6 +25,7 @@ shared_examples 'a missions list page' do
     is_expected.to have_content(I18n.t('missions.index.field'))
     is_expected.to have_content(Mission.human_attribute_name(:created_at))
     is_expected.to have_content(Mission.human_attribute_name(:ended_at))
+    is_expected.to have_content(Mission.human_attribute_name(:priority))
     is_expected.to have_content(I18n.t('missions.index.order'))
     is_expected.to have_content(I18n.t('missions.index.ascending'))
     is_expected.to have_content(I18n.t('missions.index.descending'))
