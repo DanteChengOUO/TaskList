@@ -2,9 +2,11 @@
 
 class Mission < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
-  validates :content, :status, presence: true
+  validates :content, :status, :priority, presence: true
   validate :validate_end_time_after_start_time
+
   enum status: { pending: 0, processing: 1, completed: 2 }
+  enum priority: { low: 0, mid: 1, high: 2 }
 
   private
 
