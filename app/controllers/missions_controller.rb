@@ -5,14 +5,8 @@ class MissionsController < ApplicationController
 
   def index
     @query = Mission.ransack(params[:q])
-
-    if valid_order_and_field
-      @query.sorts = "#{params[:field]} #{params[:order]}"
-    else
-      flash.now[:notice] = t('.failure')
-    end
-
-    @query.sorts = 'created_at desc'
+    @query.sorts = sorts_builder(params)
+    flash.now[:notice] = t('.failure') unless valid_params?(params)
     @missions = @query.result
   end
 
@@ -60,10 +54,29 @@ class MissionsController < ApplicationController
     @mission = Mission.find(params[:id])
   end
 
-  def valid_order_and_field
-    valid_orders = ['ASC', 'DESC', nil]
-    valid_fields = ['created_at', 'ended_at', 'priority', nil]
-    return true if valid_orders.include?(params[:order]) && valid_fields.include?(params[:field])
+  def sorts_builder(params)
+    return "#{params[:field]} #{params[:order]}" if valid_field?(params[:field]) && valid_order?(params[:order])
+
+    'created_at desc'
+  end
+
+  def valid_field?(field)
+    valid_fields = %w[created_at ended_at priority]
+    return true if valid_fields.include?(field)
+
+    false
+  end
+
+  def valid_order?(order)
+    valid_orders = %w[ASC DESC]
+    return true if valid_orders.include?(order)
+
+    false
+  end
+
+  def valid_params?(params)
+    return true if params[:order].nil? && params[:field].nil?
+    return true if valid_field?(params[:field]) && valid_order?(params[:order])
 
     false
   end
