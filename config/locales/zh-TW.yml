@@ -74,3 +74,10 @@ zh-TW:
   time:
     formats:
       default: "%Y/%m/%d %H:%M"
+  views:
+    pagination:
+      first: "« 第一頁"
+      last: "最後一頁 »"
+      previous: "‹ 前一頁"
+      next: "下一頁 ›"
+      truncate: "…"
