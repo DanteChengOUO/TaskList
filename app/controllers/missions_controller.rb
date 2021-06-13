@@ -4,11 +4,16 @@ class MissionsController < ApplicationController
   before_action :find_mission, only: %i[edit update destroy]
 
   def index
-    if valid_order?(params[:order])
-      sort_missions
+    @query = Mission.ransack(params[:q])
+
+    if valid_order_and_field
+      @query.sorts = "#{params[:field]} #{params[:order]}"
     else
-      sort_missions_with_notice
+      flash.now[:notice] = t('.failure')
     end
+
+    @query.sorts = 'created_at desc'
+    @missions = @query.result
   end
 
   def new
@@ -48,31 +53,18 @@ class MissionsController < ApplicationController
   private
 
   def mission_params
-    params.require(:mission).permit(:title, :content, :started_at, :ended_at)
+    params.require(:mission).permit(:title, :content, :started_at, :ended_at, :status)
   end
 
   def find_mission
     @mission = Mission.find(params[:id])
   end
 
-  def sort_missions
-    case params[:field]
-    when 'created_at' then @missions = Mission.order(created_at: params[:order])
-    when 'ended_at' then @missions = Mission.order(ended_at: params[:order])
-    when nil then @missions = Mission.order(created_at: :DESC)
-    else sort_missions_with_notice
-    end
-  end
-
-  def valid_order?(order)
+  def valid_order_and_field
     valid_orders = ['ASC', 'DESC', nil]
-    return true if valid_orders.include?(order)
+    valid_fields = ['created_at', 'ended_at', nil]
+    return true if valid_orders.include?(params[:order]) && valid_fields.include?(params[:field])
 
     false
-  end
-
-  def sort_missions_with_notice
-    flash.now[:notice] = t('.failure')
-    @missions = Mission.order(created_at: :DESC)
   end
 end

@@ -1,12 +1,35 @@
 <h1><%= t('.title') %></h1>
 <%= link_to t('.link.create'), new_mission_path %>
-<%= form_tag(missions_path, method: 'get') do %>
+
+<%= search_form_for @query do |form| %>
+  <%= form.label :title, Mission.human_attribute_name(:title) %>
+  <%= form.search_field :title_cont_any %>
+  <%= form.label :status, Mission.human_attribute_name(:status) %>
+  <%= form.select :status_eq, options_for_select(
+                                                  [
+                                                    [t('.status.all'), nil],
+                                                    [Mission.human_enum_name(:statuses, :pending), 0],
+                                                    [Mission.human_enum_name(:statuses, :processing), 1],
+                                                    [Mission.human_enum_name(:statuses, :completed), 2]
+                                                  ],
+                                                  params[:q].present? ? params[:q][:status_eq] : nil
+                                                  ) %>
   <%= label_tag(:field, t('.field')) %>
-  <%= select_tag(:field, options_for_select([[Mission.human_attribute_name(:created_at), :created_at], [Mission.human_attribute_name(:ended_at), :ended_at]], params[:field])) %>
-  <br>
+  <%= select_tag(:field, options_for_select(
+                                            [
+                                              [Mission.human_attribute_name(:created_at), :created_at],
+                                              [Mission.human_attribute_name(:ended_at), :ended_at]
+                                            ],
+                                            params[:field]
+                                            )) %>
   <%= label_tag(:order, t('.order')) %>
-  <%= select_tag(:order, options_for_select([[t('.descending'), :DESC], [t('.ascending'), :ASC]], params[:order])) %>
-  <br>
+  <%= select_tag(:order, options_for_select(
+                                            [
+                                              [t('.descending'), :DESC],
+                                              [t('.ascending'), :ASC]
+                                            ],
+                                            params[:order]
+                                            )) %>
   <%= submit_tag(t('.submit')) %>
 <% end %>
 
@@ -14,7 +37,9 @@
   <% @missions.each do |mission| %>
     <li>
       <%= link_to t('.link.edit'), edit_mission_path(mission) %>
-      <%= link_to t('.link.delete'), mission_path(mission), method: :delete, data: { confirm: t('.alert.deletion') } %>
+      <%= link_to t('.link.delete'), mission_path(mission), method: :delete,
+                                                            data: { confirm: t('.alert.deletion') } %>
+      <%= Mission.human_enum_name(:statuses, mission.status) %>
       <%= mission.title %>
       <%= mission.content %>
       <%= l(mission.started_at, time: :default) if mission.started_at %>

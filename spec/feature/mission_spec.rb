@@ -27,7 +27,7 @@ RSpec.describe 'Missions List', type: :feature do
   end
 
   describe 'Sorting mission' do
-    let!(:first_mission) { create(:mission) }
+    let!(:first_mission) { create(:mission, created_at: DateTime.now, ended_at: DateTime.now + 1) }
     let!(:second_mission) { create(:mission, created_at: DateTime.now + 1, ended_at: DateTime.now + 2) }
     let!(:third_mission) { create(:mission, created_at: DateTime.now + 2, ended_at: DateTime.now + 3) }
 
