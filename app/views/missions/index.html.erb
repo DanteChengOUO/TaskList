@@ -1,45 +1,76 @@
-<h1><%= t('.title') %></h1>
-<%= link_to t('.link.create'), new_mission_path %>
+<h1 class="text-center text-5xl py-4"><%= t('.title') %></h1>
+<div class="bg-gray-light mx-auto flex items-center text-center w-full xl:h-10 sm:h-16">
+  <div class="w-1/4 sm:1/12">
+    <div class="rounded-full mx-auto bg-green-500 w-24"><%= link_to t('.link.create'), new_mission_path %></div>
+  </div>
+  <div class="w-3/4 sm:11/12">
+    <%= search_form_for @query , class:"search_div grid grid-cols-6 sm:items-center" do |form|  %>
+      <span class="mx-4 col-span-2">
+        <%= form.label :title, Mission.human_attribute_name(:title) %>
+        <%= form.search_field :title_cont_any, class:'rounded-full px-2 bg-gray-900', placeholder: "Search for ... " %></span>
+      <span class="mx-4">
+        <%= form.label :status, Mission.human_attribute_name(:status) %>
+        <%= form.select :status_eq, options_for_select([[t('.status.all'), nil],
+                                                        [Mission.human_enum_name(:statuses, :pending), 0],
+                                                        [Mission.human_enum_name(:statuses, :processing), 1],
+                                                        [Mission.human_enum_name(:statuses, :completed), 2]
+                                                       ],
+                                                       params[:q].present? ? params[:q][:status_eq] : nil),
+                                    {},
+                                    {class:'appearance-none cursor-pointer rounded-full px-2 bg-gray-900'} %></span>
+      <span class="mx-4">
+        <%= label_tag(:field, t('.field')) %>
+        <%= select_tag(:field, options_for_select([[Mission.human_attribute_name(:created_at), :created_at],
+                                                   [Mission.human_attribute_name(:ended_at), :ended_at],
+                                                   [Mission.human_attribute_name(:priority), :priority]
+                                                  ],
+                                                  params[:field]),
+                                                  {class:'appearance-none cursor-pointer rounded-full px-2 bg-gray-900'}) %></span>
+      <span class="mx-4">
+        <%= label_tag(:order, t('.order')) %>
+        <%= select_tag(:order, options_for_select([[t('.descending'), :DESC],
+                                                   [t('.ascending'), :ASC]
+                                                  ],
+                                                  params[:order]),
+                                                  {class:'appearance-none cursor-pointer rounded-full px-2 bg-gray-900'}) %></span>
+      <span class="mx-4" >
+        <%= submit_tag(t('.submit'), class:'cursor-pointer bg-green-500 rounded-full px-2') %></span>
+    <% end %>
+  </div>
+</div>
 
-<%= search_form_for @query do |form| %>
-  <%= form.label :title, Mission.human_attribute_name(:title) %>
-  <%= form.search_field :title_cont_any %>
-  <%= form.label :status, Mission.human_attribute_name(:status) %>
-  <%= form.select :status_eq, options_for_select([[t('.status.all'), nil],
-                                                  [Mission.human_enum_name(:statuses, :pending), 0],
-                                                  [Mission.human_enum_name(:statuses, :processing), 1],
-                                                  [Mission.human_enum_name(:statuses, :completed), 2]
-                                                 ],
-                                                 params[:q].present? ? params[:q][:status_eq] : nil) %>
-  <%= label_tag(:field, t('.field')) %>
-  <%= select_tag(:field, options_for_select([[Mission.human_attribute_name(:created_at), :created_at],
-                                             [Mission.human_attribute_name(:ended_at), :ended_at],
-                                             [Mission.human_attribute_name(:priority), :priority]
-                                            ],
-                                            params[:field])) %>
-  <%= label_tag(:order, t('.order')) %>
-  <%= select_tag(:order, options_for_select([[t('.descending'), :DESC],
-                                             [t('.ascending'), :ASC]
-                                            ],
-                                            params[:order])) %>
-  <%= submit_tag(t('.submit')) %>
-<% end %>
+<table class="w-full">
+  <thead class="list_head bg-black">
+    <tr class="text-center">
+      <th class="w-1/12" colspan="2">任務操作</th>
+      <th class="w-1/12">任務狀態</th>
+      <th class="w-1/12">任務優先度</th>
+      <th class="w-2/12">標題</th>
+      <th class="w-4/12">內容</th>
+      <th class="w-1/12">起始時間</th>
+      <th class="w-1/12">結束時間</th>
+      <th class="w-1/12">建立時間</th>
+    </tr>
+  </thead>
+  <tbody class="list_body">
+    <% @missions.each do |mission| %>
+      <tr class="text-center">
+        <td><div class="bg-green-500 rounded-full w-10 mx-auto"><%= link_to t('.link.edit'), edit_mission_path(mission) %></td></div>
+        <td><div class="bg-red-500 rounded-full w-10 mx-auto"><%= link_to t('.link.delete'), mission_path(mission), method: :delete,
+                                                                  data: { confirm: t('.alert.deletion') } %></td></div>
+        <td class="status"><%= Mission.human_enum_name(:statuses, mission.status) %></td>
+        <td class="priority"><%= Mission.human_enum_name(:priorities, mission.priority) %></td>
+        <td class="title text-left pl-2"><%= mission.title %></td>
+        <td class="text-left pl-2"><%= mission.content %></td>
+        <td><%= l(mission.started_at, time: :default) if mission.started_at %></td>
+        <td><%= l(mission.ended_at, time: :default) if mission.ended_at %></td>
+        <td><%= l(mission.created_at, time: :default) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<ul>
-  <% @missions.each do |mission| %>
-    <li>
-      <%= link_to t('.link.edit'), edit_mission_path(mission) %>
-      <%= link_to t('.link.delete'), mission_path(mission), method: :delete,
-                                                            data: { confirm: t('.alert.deletion') } %>
-      <span class="status"><%= Mission.human_enum_name(:statuses, mission.status) %></span>
-      <span class="priority"><%= Mission.human_enum_name(:priorities, mission.priority) %></span>
-      <span class="title"><%= mission.title %></span>
-      <%= mission.content %>
-      <%= l(mission.started_at, time: :default) if mission.started_at %>
-      <%= l(mission.ended_at, time: :default) if mission.ended_at %>
-      <%= l(mission.created_at, time: :default) %>
-    </li>
-  <% end %>
-</ul>
 
-<%= paginate @missions %>
+<div class="text-center bg-black">
+  <%= paginate @missions %>
+</div>
