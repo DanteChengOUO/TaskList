@@ -1,3 +1,29 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+// Customized CSS
+// Change calendar color
+.form input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    @apply cursor-pointer filter invert
+}
+
+// Fix adding div when it has errors message
+.field_with_errors {
+    @apply inline
+}
+
+.list_body {
+    tr:nth-child(even) {
+        @apply bg-gray-blue
+    }
+    tr:nth-child(odd) {
+        @apply bg-gray-900
+    }
+    td {
+        @apply border border-solid border-gray-cool
+    }
+}
+
+.list_head th {
+    @apply border border-solid border-gray-cool
+}
