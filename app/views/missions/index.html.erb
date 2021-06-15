@@ -39,8 +39,8 @@
       <%= link_to t('.link.edit'), edit_mission_path(mission) %>
       <%= link_to t('.link.delete'), mission_path(mission), method: :delete,
                                                             data: { confirm: t('.alert.deletion') } %>
-      <%= Mission.human_enum_name(:statuses, mission.status) %>
-      <%= mission.title %>
+      <span class="status"><%= Mission.human_enum_name(:statuses, mission.status) %></span>
+      <span class="title"><%= mission.title %></span>
       <%= mission.content %>
       <%= l(mission.started_at, time: :default) if mission.started_at %>
       <%= l(mission.ended_at, time: :default) if mission.ended_at %>
