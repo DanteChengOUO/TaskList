@@ -62,6 +62,9 @@ en:
     edit:
       title: Edit mission
       <<: *button
+    form:
+      back: Back to Home
+      <<: *button
     create:
       success: Create mission success
       failure: Create mission fail

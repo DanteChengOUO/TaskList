@@ -62,6 +62,9 @@ zh-TW:
     edit:
       title: 修改任務
       <<: *button
+    form:
+      back: 回到首頁
+      <<: *button
     create:
       success: 任務新增成功
       failure: 任務新增失敗
