@@ -110,14 +110,14 @@ RSpec.describe 'Searching missions feature', type: :feature do
         let(:title_string) { 'test_t' }
 
         it_behaves_like 'a missions list page'
-        it { is_expected.to have_selector('ul > li > span.title', count: 2) }
+        it { is_expected.to have_selector('tbody > tr > td.title', count: 2) }
       end
 
       context 'When has\'t missions match condition' do
         let(:title_string) { 'some_nonexistent_title' }
 
         it_behaves_like 'a missions list page'
-        it { is_expected.to have_selector('ul > li > span.title', count: 0) }
+        it { is_expected.to have_selector('tbody > tr > td.title', count: 0) }
       end
     end
 
@@ -139,7 +139,7 @@ RSpec.describe 'Searching missions feature', type: :feature do
 
           it_behaves_like 'a missions list page'
           it_behaves_like 'a page that shows only completed missions'
-          it { is_expected.to have_selector('ul > li > span.title', count: 1) }
+          it { is_expected.to have_selector('tbody > tr > td.title', count: 1) }
         end
 
         context 'when status has\'t match condition' do
@@ -152,7 +152,7 @@ RSpec.describe 'Searching missions feature', type: :feature do
 
           it_behaves_like 'a missions list page'
           it_behaves_like 'a page that shows no missions'
-          it { is_expected.to have_selector('ul > li > span.title', count: 0) }
+          it { is_expected.to have_selector('tbody > tr > td.title', count: 0) }
         end
       end
 
@@ -169,7 +169,7 @@ RSpec.describe 'Searching missions feature', type: :feature do
 
         it_behaves_like 'a missions list page'
         it_behaves_like 'a page that shows no missions'
-        it { is_expected.to have_selector('ul > li > span.title', count: 0) }
+        it { is_expected.to have_selector('tbody > tr > td.title', count: 0) }
       end
     end
   end
