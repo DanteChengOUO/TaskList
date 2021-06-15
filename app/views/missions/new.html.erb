@@ -22,12 +22,14 @@
   <%= form.datetime_field :ended_at %>
   <br>
   <%= form.label :status, Mission.human_attribute_name(:status) %>
-  <%= form.select :status, options_for_select(
-                                              [
-                                                [Mission.human_enum_name(:statuses, :pending), :pending],
-                                                [Mission.human_enum_name(:statuses, :processing), :processing],
-                                                [Mission.human_enum_name(:statuses, :completed), :completed]
-                                              ]) %>
+  <%= form.select :status, options_for_select([[Mission.human_enum_name(:statuses, :pending), :pending],
+                                               [Mission.human_enum_name(:statuses, :processing), :processing],
+                                               [Mission.human_enum_name(:statuses, :completed), :completed]]) %>
+  <br>
+  <%= form.label :priority, Mission.human_attribute_name(:priority) %>
+  <%= form.select :priority, options_for_select([[Mission.human_enum_name(:priorities, :low), :low],
+                                                 [Mission.human_enum_name(:priorities, :mid), :mid],
+                                                 [Mission.human_enum_name(:priorities, :high), :high]]) %>
   <br>
   <%= form.submit t('.submit') %>
 <% end %>

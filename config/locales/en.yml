@@ -14,19 +14,28 @@ en:
           pending: Pending
           processing: Processing
           completed: Completed
+        priority: Priority
+        priorities:
+          low: Low
+          mid: middle
+          high: high
     errors:
       models:
+        blank: &blank
+          blank: can't be blank.
         mission:
           attributes:
             ended_at:
               before_start_time: must be after Start time
             title:
-              blank: can't be blank.
+              <<: *blank
               too_long: must be less than 50 characters
             content:
-              blank: can't be blank.
+              <<: *blank
             status:
-              blank: can't be blank.
+              <<: *blank
+            priority:
+              <<: *blank
 
   missions:
     button: &button
