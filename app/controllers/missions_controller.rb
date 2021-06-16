@@ -47,7 +47,7 @@ class MissionsController < ApplicationController
   private
 
   def mission_params
-    params.require(:mission).permit(:title, :content, :started_at, :ended_at, :status, :priority)
+    params.require(:mission).permit(:title, :content, :started_at, :ended_at, :status, :priority, :user_id)
   end
 
   def find_mission
