@@ -8,6 +8,9 @@ class Mission < ApplicationRecord
   enum status: { pending: 0, processing: 1, completed: 2 }
   enum priority: { low: 0, mid: 1, high: 2 }
 
+  # kaminali default mission in per page
+  paginates_per 15
+
   private
 
   def validate_end_time_after_start_time

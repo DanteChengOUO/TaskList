@@ -7,7 +7,7 @@ class MissionsController < ApplicationController
     @query = Mission.ransack(params[:q])
     @query.sorts = sorts_builder(params)
     flash.now[:notice] = t('.failure') unless valid_params?(params)
-    @missions = @query.result
+    @missions = @query.result.page(params[:page])
   end
 
   def new

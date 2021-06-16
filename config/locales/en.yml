@@ -74,3 +74,10 @@ en:
   time:
     formats:
       default: "%Y/%m/%d %H:%M"
+  views:
+    pagination:
+      first: "« First"
+      last: "Last »"
+      previous: "‹ Prev"
+      next: "Next ›"
+      truncate: "…"
