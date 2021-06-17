@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class MissionsController < ApplicationController
+  before_action :required_login
   before_action :find_mission, only: %i[edit update destroy]
   after_action :includes_user, only: %i[index]
 
@@ -49,6 +50,16 @@ class MissionsController < ApplicationController
 
   def current_user_mission
     Mission.where(user_id: session[:current_user_id])
+  end
+
+  def login?
+    return true if session[:current_user_id]
+
+    false
+  end
+
+  def required_login
+    redirect_to root_path, notice: '請登入前往任務列表' unless login?
   end
 
   def mission_params
