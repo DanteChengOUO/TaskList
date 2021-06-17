@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       session[:current_user_id] = user.id
       redirect_to missions_path, notice: "歡迎#{user.name} 登入成功"
     else
-      redirect_to root_path, notice: '登入失敗'
+      redirect_to login_path, notice: '登入失敗'
     end
   end
 
