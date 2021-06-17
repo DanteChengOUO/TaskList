@@ -1,23 +1,23 @@
-<h1 class="text-center text-5xl py-4"><%= '登入' %></h1>
+<h1 class="text-center text-5xl py-4"><%= t('.title') %></h1>
 
 <div class="form bg-gray-light lg:w-1/4 sm:w-2/5 mx-auto mt-10 h-30 py-2 rounded-lg">
   <%= form_tag login_path do %>
  <div class="m-1 text-center">
-   <%= label_tag(:email, '信箱') %>
+   <%= label_tag(:email, User.human_attribute_name(:email)) %>
    <%= text_field_tag :email, "", class:'rounded-full px-2 bg-gray-900' %>
  </div>
  <div class="m-1 text-center">
-   <%= label_tag(:password, '密碼') %>
+   <%= label_tag(:password, User.human_attribute_name(:password)) %>
    <%= text_field_tag :password, "", class:'rounded-full px-2 bg-gray-900' %>
  </div>
 
  <div class="mt-4 flex">
     <%# sign_up_path %>
     <div class="text-center w-1/2 ml-12">
-      <div class="bg-red-500 rounded-full mx-auto w-1/3"><%= link_to '註冊', '' %></div>
+      <div class="bg-red-500 rounded-full mx-auto w-1/3"><%= link_to t('.link.register'), '' %></div>
     </div>
     <div class="text-center w-1/2 mr-12">
-      <%= submit_tag('登入', class:'cursor-pointer bg-green-500 rounded-full px-2') %>
+      <%= submit_tag(t('.login'), class:'cursor-pointer bg-green-500 rounded-full px-2') %>
     </div>
   </div>
   <% end %>
