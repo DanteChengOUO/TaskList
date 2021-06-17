@@ -1,7 +1,5 @@
 <h1 class="text-center text-5xl py-4"><%= t('.title') %></h1>
 <div class="bg-gray-light mx-auto flex items-center text-center w-full xl:h-10 sm:h-16">
-  <%= link_to '登出', logout_path, method: :delete,
-                                   data: { confirm: '確認登出?' } %>
   <div class="w-1/4 sm:1/12">
     <div class="rounded-full mx-auto bg-green-500 w-24"><%= link_to t('.link.create'), new_mission_path %></div>
   </div>
