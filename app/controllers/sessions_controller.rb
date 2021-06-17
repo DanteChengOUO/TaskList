@@ -10,16 +10,16 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(params[:password])
       session[:current_user_id] = user.id
-      redirect_to missions_path, notice: "歡迎#{user.name} 登入成功"
+      redirect_to missions_path, notice: t('.success', name: user.name)
     else
-      redirect_to login_path, notice: '登入失敗'
+      redirect_to login_path, notice: t('.failure')
     end
   end
 
   def destroy
-    return redirect_to missions_path, notice: '登出失敗' if session[:current_user_id].blank?
+    return redirect_to missions_path, notice: t('.failure') if session[:current_user_id].blank?
 
     session[:current_user_id] = nil
-    redirect_to login_path, notice: '使用者已登出'
+    redirect_to login_path, notice: t('.success')
   end
 end
