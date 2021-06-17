@@ -44,6 +44,16 @@ Mission management system
   | content    | _text_     |
   | started_at | _datetime_ |
   | ended_at   | _datetime_ |
+  | user_id    | _bigint_   |
+
+- Users
+
+  | Column   | Data Type |
+  | -------- | --------- |
+  | id       | _bigint_  |
+  | name     | _string_  |
+  | email    | _string_  |
+  | password | _string_  |
 
 ## Getting Started
 
