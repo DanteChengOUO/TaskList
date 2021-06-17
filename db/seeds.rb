@@ -8,7 +8,7 @@
 require 'factory_bot_rails'
 require 'faker'
 
-user = FactoryBot.create(:user, email:'test@gmail.com')
+user = FactoryBot.create(:user, email:'test@gmail.com',password: '123123')
 
 50.times do
   FactoryBot.create(:mission,user: user)
