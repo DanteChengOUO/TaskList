@@ -59,7 +59,7 @@ class MissionsController < ApplicationController
   end
 
   def required_login
-    redirect_to login_path, notice: '請登入前往任務列表' unless login?
+    redirect_to login_path, notice: t('.failure') unless login?
   end
 
   def mission_params
