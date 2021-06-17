@@ -20,7 +20,7 @@ class MissionsController < ApplicationController
     @mission = Mission.new(mission_params)
 
     if @mission.save
-      redirect_to root_path, notice: t('.success')
+      redirect_to missions_path, notice: t('.success')
     else
       flash.now[:notice] = t('.failure')
       render :new
@@ -31,7 +31,7 @@ class MissionsController < ApplicationController
 
   def update
     if @mission.update(mission_params)
-      redirect_to root_path, notice: t('.success')
+      redirect_to missions_path, notice: t('.success')
     else
       flash.now[:notice] = t('.failure')
       render :edit
@@ -40,9 +40,9 @@ class MissionsController < ApplicationController
 
   def destroy
     if @mission.destroy
-      redirect_to root_path, notice: t('.success')
+      redirect_to missions_path, notice: t('.success')
     else
-      redirect_to root_path, notice: t('.failure')
+      redirect_to missions_path, notice: t('.failure')
     end
   end
 
@@ -59,7 +59,7 @@ class MissionsController < ApplicationController
   end
 
   def required_login
-    redirect_to root_path, notice: '請登入前往任務列表' unless login?
+    redirect_to login_path, notice: '請登入前往任務列表' unless login?
   end
 
   def mission_params
