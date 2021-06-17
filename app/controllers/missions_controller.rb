@@ -5,9 +5,9 @@ class MissionsController < ApplicationController
   after_action :includes_user, only: %i[index]
 
   def index
-    @query = Mission.ransack(params[:q])
+    @query = current_user_mission.ransack(params[:q])
     @query.sorts = sorts_builder(params)
-    flash.now[:notice] = t('.failure') unless valid_params?(params)
+    # flash.now[:notice] = t('.failure') unless valid_params?(params)
     @missions = @query.result.page(params[:page])
   end
 
@@ -46,6 +46,10 @@ class MissionsController < ApplicationController
   end
 
   private
+
+  def current_user_mission
+    Mission.where(user_id: session[:current_user_id])
+  end
 
   def mission_params
     params.require(:mission).permit(:title, :content, :started_at, :ended_at, :status, :priority, :user_id)
