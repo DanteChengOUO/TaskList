@@ -1,5 +1,7 @@
 <h1 class="text-center text-5xl py-4"><%= t('.title') %></h1>
 <div class="bg-gray-light mx-auto flex items-center text-center w-full xl:h-10 sm:h-16">
+  <%= link_to '登出', logout_path, method: :delete,
+                                   data: { confirm: '確認登出?' } %>
   <div class="w-1/4 sm:1/12">
     <div class="rounded-full mx-auto bg-green-500 w-24"><%= link_to t('.link.create'), new_mission_path %></div>
   </div>
@@ -57,7 +59,7 @@
       <tr class="text-center">
         <td><div class="bg-green-500 rounded-full w-10 mx-auto"><%= link_to t('.link.edit'), edit_mission_path(mission) %></td></div>
         <td><div class="bg-red-500 rounded-full w-10 mx-auto"><%= link_to t('.link.delete'), mission_path(mission), method: :delete,
-                                                                  data: { confirm: t('.alert.deletion') } %></td></div>
+                                                                                                                    data: { confirm: t('.alert.deletion') } %></td></div>
         <td class="status"><%= Mission.human_enum_name(:statuses, mission.status) %></td>
         <td class="priority"><%= Mission.human_enum_name(:priorities, mission.priority) %></td>
         <td class="title text-left pl-2"><%= mission.title %></td>

@@ -15,4 +15,11 @@ class SessionsController < ApplicationController
       redirect_to root_path, notice: '登入失敗'
     end
   end
+
+  def destroy
+    return redirect_to missions_path, notice: '登出失敗' if session[:current_user_id].blank?
+
+    session[:current_user_id] = nil
+    redirect_to login_path, notice: '使用者已登出'
+  end
 end
