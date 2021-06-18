@@ -18,7 +18,6 @@ RSpec.describe Mission, type: :model do
   it { is_expected.to validate_presence_of(:user_id).with_message(user_id_blank_error) }
 
   describe '#ended_at validation' do
-    # Mission#form L45 value: User.last.id, Fix at #38
     let(:user) { create(:user) }
 
     context 'When #ended_at is bigger than #started_at' do
