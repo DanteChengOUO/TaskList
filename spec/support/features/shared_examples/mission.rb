@@ -9,11 +9,8 @@ shared_examples 'a missions list page' do
     is_expected.to have_content(I18n.t('missions.index.link.create'))
   end
 
-  it 'shows title searching division' do
+  it 'shows searching division' do
     is_expected.to have_content(Mission.human_attribute_name(:title))
-  end
-
-  it 'shows status searching division' do
     is_expected.to have_content(Mission.human_attribute_name(:status))
     is_expected.to have_content(I18n.t('missions.index.status.all'))
     is_expected.to have_content(Mission.human_enum_name(:statuses, :pending))
