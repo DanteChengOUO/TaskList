@@ -1,0 +1,54 @@
+<div class="w-1/4 mx-auto h-28 p-1">
+  <% if @mission.errors.any? %>
+    <ul>
+      <% @mission.errors.full_messages.each do |message| %>
+        <li class="bg-red-500 text-center rounded-lg m-1"><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<div class="form bg-gray-light lg:w-1/4 sm:w-2/5 mx-auto mt-10 h-60 p-2 rounded-lg">
+  <%= form_for(@mission) do |form| %>
+  <div class="m-1">
+    <%= form.label :title, Mission.human_attribute_name(:title) %>
+    <%= form.text_field :title, class:'rounded-full px-2 bg-gray-900' %>
+  </div>
+ <div class="m-1">
+    <%= form.label :content, Mission.human_attribute_name(:content) %>
+    <%= form.text_field :content, class:'rounded-full px-2 bg-gray-900' %>
+ </div>
+ <div class="m-1">
+    <%= form.label :started_at, Mission.human_attribute_name(:started_at) %>
+    <%= form.datetime_field :started_at, class:'rounded-full px-2 bg-gray-900' %>
+ </div>
+ <div class="m-1">
+    <%= form.label :ended_at, Mission.human_attribute_name(:ended_at) %>
+    <%= form.datetime_field :ended_at, class:'rounded-full px-2 bg-gray-900' %>
+ </div>
+ <div class="m-1">
+    <%= form.label :status, Mission.human_attribute_name(:status) %>
+    <%= form.select :status, options_for_select([[Mission.human_enum_name(:statuses, :pending), :pending],
+                                                [Mission.human_enum_name(:statuses, :processing), :processing],
+                                                [Mission.human_enum_name(:statuses, :completed), :completed]]),
+                             {},
+                             {class:'appearance-none cursor-pointer rounded-full px-2 bg-gray-900' } %>
+ </div>
+ <div class="m-1">
+    <%= form.label :priority, Mission.human_attribute_name(:priority) %>
+    <%= form.select :priority, options_for_select([[Mission.human_enum_name(:priorities, :low), :low],
+                                                  [Mission.human_enum_name(:priorities, :mid), :mid],
+                                                  [Mission.human_enum_name(:priorities, :high), :high]]),
+                               {},
+                               {class:'appearance-none cursor-pointer rounded-full px-2 bg-gray-900' } %>
+ </div>
+ <div class="mx-auto items-center m-4 flex">
+    <div class="text-center w-1/2 ">
+      <div class="bg-red-500 rounded-full mx-auto w-2/3"><%= link_to t('.back'), missions_path %></div>
+    </div>
+    <div class="text-center w-1/2">
+      <%= form.submit t('.submit'), class:'cursor-pointer bg-green-500 rounded-full px-2' %>
+    </div>
+  </div>
+  <% end %>
+</div>
