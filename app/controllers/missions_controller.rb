@@ -2,6 +2,7 @@
 
 class MissionsController < ApplicationController
   before_action :find_mission, only: %i[edit update destroy]
+  after_action :includes_user, only: %i[index]
 
   def index
     @query = Mission.ransack(params[:q])
@@ -79,5 +80,9 @@ class MissionsController < ApplicationController
     return true if valid_field?(params[:field]) && valid_order?(params[:order])
 
     false
+  end
+
+  def includes_user
+    @missions = @missions.includes(:user)
   end
 end
