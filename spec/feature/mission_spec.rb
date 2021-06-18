@@ -32,11 +32,20 @@ RSpec.describe 'Missions List', type: :feature do
 
     context 'when there are missions' do
       let!(:mission) { create(:mission, user: user) }
-      
+
       before { visit missions_path }
 
       it_behaves_like 'a missions list page'
       it_behaves_like 'a page that shows the missions'
+    end
+
+    context 'when goes to missions list page without login' do
+      before do
+        click_link I18n.t('shared.navbar.link.logout')
+        visit missions_path
+      end
+
+      it_behaves_like 'a login page'
     end
   end
 
