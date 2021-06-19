@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
 
     @current_user ||= User.find_by(id: session[:current_user_id])
   end
+
+  def authenticate_user!
+    redirect_to login_path, notice: t('missions.failure') unless session[:current_user_id]
+  end
 end

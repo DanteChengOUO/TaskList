@@ -3,7 +3,7 @@
 module Admin
   class UsersController < ApplicationController
     before_action :authenticate_user!, except: %i[new create]
-    before_action :find_user, only: %i[edit update destroy]
+    before_action :find_user, only: %i[show edit update destroy]
 
     def index
       @user = User.order(:name).page(params[:page]).includes(:missions)
@@ -42,7 +42,11 @@ module Admin
       end
     end
 
-    def show; end
+    def show
+      service = MissionsQueryService.new(current_user: @user, params: params)
+      @query = service.query
+      @missions = service.result
+    end
 
     private
 

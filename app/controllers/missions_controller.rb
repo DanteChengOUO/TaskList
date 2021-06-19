@@ -47,10 +47,6 @@ class MissionsController < ApplicationController
 
   private
 
-  def authenticate_user!
-    redirect_to login_path, notice: t('missions.failure') unless session[:current_user_id]
-  end
-
   def mission_params
     params.require(:mission).permit(:title, :content, :started_at, :ended_at, :status, :priority, :user_id)
   end
