@@ -1,24 +1,35 @@
-  <div class="bg-gray-cool flex justify-end h-8">
-    <% if session[:current_user_id].present? %>
-      <% if request.path == missions_path %>
-        <div class="text-center bg-green-500 w-1/12 rounded-full my-auto">
-          <%= link_to t('.link.edit_user'), '' %></div>
-        <div class="text-center bg-red-500 w-1/12 rounded-full my-auto">
-      <% else %>
-        <div class="text-center bg-red-500 w-1/12 rounded-full my-auto">
-          <%= link_to t('.link.delete_user'), '' %></div>
-        <div class="text-center bg-green-500 w-1/12 rounded-full my-auto">
-      <% end %>
-          <%= link_to t('.link.logout'), logout_path, method: :delete,
-                                                      data: { confirm: t('.alert.logout') } %></div>
+<div class="bg-gray-cool flex justify-end h-8" >
+  <% if current_user %>
+    <% if request.path == admin_users_path %>
+      <div class="text-center bg-blue-500 w-1/12 rounded-full my-auto">
+        <%= link_to "#{current_user.name}", missions_path %>
+      </div>
+      <div class="text-center bg-green-500 w-1/12 rounded-full my-auto">
+        <%= link_to t('.link.register'), new_admin_user_path %>
+      </div>
+      <div class="text-center bg-red-500 w-1/12 rounded-full my-auto">
+        <%= link_to t('.link.logout'), logout_path, method: :delete,
+                                        data: { confirm: t('.alert.logout') } %>
+      </div>
     <% else %>
-      <% if request.path == login_path %>
-          <div class="bg-gray-dark w-full"></div>
-      <% else %>
-          <div class="text-center bg-green-500 w-1/12 rounded-full my-auto">
-            <%= link_to t('.link.login'), login_path %></div>
-      <% end %>
+      <div class="text-center bg-blue-500 w-1/12 rounded-full my-auto">
+        <%= "#{User.find(params[:id]).name}" if params[:action] == 'show' %>
+      </div>
+      <div class="text-center bg-green-500 w-1/12 rounded-full my-auto">
+        <%= link_to t('.link.back.admin'), admin_users_path %>
+      </div>
+      <div class="text-center bg-red-500 w-1/12 rounded-full my-auto">
+        <%= link_to t('.link.logout'), logout_path, method: :delete,
+                                        data: { confirm: t('.alert.logout') } %>
+      </div>
     <% end %>
-  </div>
-
-
+  <% else %>
+    <% if request.path == login_path %>
+      <div class="bg-gray-dark w-full"></div>
+    <% else %>
+      <div class="text-center bg-green-500 w-1/12 rounded-full my-auto">
+        <%= link_to t('.link.back.login'), login_path %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

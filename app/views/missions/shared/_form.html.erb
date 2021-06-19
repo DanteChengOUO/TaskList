@@ -30,7 +30,7 @@
     <%= form.label :status, Mission.human_attribute_name(:status) %>
     <%= form.select :status, options_for_select([[Mission.human_enum_name(:statuses, :pending), :pending],
                                                 [Mission.human_enum_name(:statuses, :processing), :processing],
-                                                [Mission.human_enum_name(:statuses, :completed), :completed]]),
+                                                [Mission.human_enum_name(:statuses, :completed), :completed]], @mission&.status),
                              {},
                              {class:'appearance-none cursor-pointer rounded-full px-2 bg-gray-900' } %>
  </div>
@@ -38,7 +38,7 @@
     <%= form.label :priority, Mission.human_attribute_name(:priority) %>
     <%= form.select :priority, options_for_select([[Mission.human_enum_name(:priorities, :low), :low],
                                                   [Mission.human_enum_name(:priorities, :mid), :mid],
-                                                  [Mission.human_enum_name(:priorities, :high), :high]]),
+                                                  [Mission.human_enum_name(:priorities, :high), :high]], @mission&.priority),
                                {},
                                {class:'appearance-none cursor-pointer rounded-full px-2 bg-gray-900' } %>
  </div>
