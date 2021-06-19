@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 class MissionsController < ApplicationController
-  before_action :required_login
+  before_action :authenticate_user!
   before_action :find_mission, only: %i[edit update destroy]
-  after_action :includes_user, only: %i[index]
 
   def index
-    @query = current_user_mission.ransack(params[:q])
-    @query.sorts = sorts_builder(params)
-    # flash.now[:notice] = t('.failure') unless valid_params?(params)
-    @missions = @query.result.page(params[:page])
+    service = MissionsQueryService.new(current_user: current_user, params: params)
+    @query = service.query
+    @missions = service.result
+    flash.now[:notice] = t('.failure') unless service.valid_params?
   end
 
   def new
@@ -48,18 +47,8 @@ class MissionsController < ApplicationController
 
   private
 
-  def current_user_mission
-    Mission.where(user_id: session[:current_user_id])
-  end
-
-  def login?
-    return true if session[:current_user_id]
-
-    false
-  end
-
-  def required_login
-    redirect_to login_path, notice: t('.failure') unless login?
+  def authenticate_user!
+    redirect_to login_path, notice: t('missions.failure') unless session[:current_user_id]
   end
 
   def mission_params
@@ -68,36 +57,5 @@ class MissionsController < ApplicationController
 
   def find_mission
     @mission = Mission.find(params[:id])
-  end
-
-  def sorts_builder(params)
-    return "#{params[:field]} #{params[:order]}" if valid_field?(params[:field]) && valid_order?(params[:order])
-
-    'created_at desc'
-  end
-
-  def valid_field?(field)
-    valid_fields = %w[created_at ended_at priority]
-    return true if valid_fields.include?(field)
-
-    false
-  end
-
-  def valid_order?(order)
-    valid_orders = %w[ASC DESC]
-    return true if valid_orders.include?(order)
-
-    false
-  end
-
-  def valid_params?(params)
-    return true if params[:order].nil? && params[:field].nil?
-    return true if valid_field?(params[:field]) && valid_order?(params[:order])
-
-    false
-  end
-
-  def includes_user
-    @missions = @missions.includes(:user)
   end
 end
