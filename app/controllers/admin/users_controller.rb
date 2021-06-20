@@ -18,9 +18,9 @@ module Admin
 
       if @user.save
         session[:current_user] = @user.id
-        redirect_to admin_users_path, notice: '會員註冊成功'
+        redirect_to admin_users_path, notice: t('.success')
       else
-        render :new, notice: '會員註冊失敗'
+        render :new, notice: t('.failure')
       end
     end
 
@@ -28,17 +28,17 @@ module Admin
 
     def update
       if @user.update(user_params)
-        redirect_to admin_users_path, notice: '修改會員資料成功'
+        redirect_to admin_users_path, notice: t('.success')
       else
-        render :edit, notice: '修改會員資料失敗'
+        render :edit, notice: t('.failure')
       end
     end
 
     def destroy
       if @user.destroy
-        redirect_to admin_users_path, notice: '使用者已移除'
+        redirect_to admin_users_path, notice: t('.success')
       else
-        redirect_to admin_users_path, notice: '使用者移除失敗'
+        redirect_to admin_users_path, notice: t('.failure')
       end
     end
 

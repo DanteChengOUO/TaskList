@@ -23,7 +23,7 @@
     <%= form.text_field :password, class:'rounded-full px-2 bg-gray-900' %>
  </div>
   <div class="m-1 w-2/3 mx-auto">
-    <%= form.label :password_confirmation, '密碼確認' %>
+    <%= form.label :password_confirmation, User.human_attribute_name(:password_confirmation) %>
     <%= form.text_field :password_confirmation, class:'rounded-full px-2 w-2/3 bg-gray-900' %>
   </div>
   <div class="text-center w-1/2 mx-auto mt-6">
