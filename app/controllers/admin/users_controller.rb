@@ -17,7 +17,7 @@ module Admin
       @user = User.new(user_params)
 
       if @user.save
-        session[:current_user] = @user.id
+        session[:current_user_id] = @user.id
         redirect_to admin_users_path, notice: t('.success')
       else
         render :new, notice: t('.failure')
@@ -35,7 +35,9 @@ module Admin
     end
 
     def destroy
-      if @user.destroy
+      if @user == current_user
+        redirect_to admin_users_path, notice: '不能刪除自己'
+      elsif @user.destroy
         redirect_to admin_users_path, notice: t('.success')
       else
         redirect_to admin_users_path, notice: t('.failure')
@@ -51,7 +53,7 @@ module Admin
     private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :role)
     end
 
     def find_user
