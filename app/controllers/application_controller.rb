@@ -14,4 +14,10 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     redirect_to login_path, notice: t('.failure') if current_user.blank?
   end
+
+  def authorize_admin!
+    return true if current_user&.role == 'admin'
+
+    false
+  end
 end

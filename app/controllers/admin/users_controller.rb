@@ -2,7 +2,7 @@
 
 module Admin
   class UsersController < ApplicationController
-    before_action :authenticate_user!, except: %i[new create]
+    before_action :authenticate_user!, :redirect_when_not_admin, except: %i[new create]
     before_action :find_user, only: %i[show edit update destroy]
 
     def index
@@ -15,10 +15,11 @@ module Admin
 
     def create
       @user = User.new(user_params)
-
-      if @user.save
-        session[:current_user_id] = @user.id
+      if current_user && @user.save
         redirect_to admin_users_path, notice: t('.success')
+      elsif @user.save
+        session[:current_user_id] = @user.id
+        redirect_to missions_path, notice: t('.success')
       else
         render :new, notice: t('.failure')
       end
@@ -58,6 +59,12 @@ module Admin
 
     def find_user
       @user = User.find(params[:id])
+    end
+
+    def redirect_when_not_admin
+      return if current_user&.admin?
+
+      redirect_to missions_path, notice: '權限不足，存取失敗'
     end
   end
 end

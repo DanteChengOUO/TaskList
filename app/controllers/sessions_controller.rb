@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(params[:password])
       session[:current_user_id] = user.id
-      redirect_to admin_users_path, notice: t('.success', name: user.name)
+      direct_to_role_path(user)
     else
       redirect_to login_path, notice: t('.failure')
     end
@@ -21,5 +21,15 @@ class SessionsController < ApplicationController
 
     session[:current_user_id] = nil
     redirect_to login_path, notice: t('.success')
+  end
+
+  private
+
+  def direct_to_role_path(user)
+    if authorize_admin!
+      redirect_to admin_users_path, notice: t('.success', name: user.name)
+    else
+      redirect_to missions_path, notice: t('.success', name: user.name)
+    end
   end
 end
