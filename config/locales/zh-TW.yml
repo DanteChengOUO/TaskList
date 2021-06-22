@@ -19,6 +19,10 @@ zh-TW:
           low: 低度
           mid: 中度
           high: 高度
+      user:
+        name: 暱稱
+        email: 信箱
+        password: 密碼
     errors:
       models:
         blank: &blank
@@ -35,6 +39,14 @@ zh-TW:
             status:
               <<: *blank
             priority:
+              <<: *blank
+        user:
+          attributes:
+            name:
+              <<: *blank
+            email:
+              <<: *blank
+            password:
               <<: *blank
 
   missions:

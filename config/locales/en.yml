@@ -19,6 +19,10 @@ en:
           low: Low
           mid: middle
           high: high
+      user:
+        name: Name
+        email: E-mail
+        password: Password
     errors:
       models:
         blank: &blank
@@ -35,6 +39,14 @@ en:
             status:
               <<: *blank
             priority:
+              <<: *blank
+        user:
+          attributes:
+            name:
+              <<: *blank
+            email:
+              <<: *blank
+            password:
               <<: *blank
 
   missions:
