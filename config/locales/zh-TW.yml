@@ -49,37 +49,9 @@ zh-TW:
             password:
               <<: *blank
 
-  button: &button
-    submit: 送出
-  shared:
-    form:
-      link:
-        index: 回到任務列表
-      <<: *button
-    navbar:
-      link:
-        delete_user: 刪除使用者資料
-        edit_user: 修改使用者資料
-        logout: 登出
-      <<: *button
-      alert:
-        logout: 確認登出？
-  sessions:
-    new:
-      title: 登入頁面
-      email: 信箱
-      password: 密碼
-      link:
-        register: 註冊
-      login: 登入
-    create:
-      success: "歡迎 %{name}, 登入成功"
-      failure: 登入失敗
-    destroy:
-      success: 使用者已登出
-      failure: 登出失敗
   missions:
-    failure: 請登入前往任務列表
+    button: &button
+      submit: 送出
     index:
       title: 任務列表
       field: 排序標準
@@ -98,8 +70,13 @@ zh-TW:
         deletion: 確認刪除？
     new:
       title: 新增任務
+      <<: *button
     edit:
       title: 修改任務
+      <<: *button
+    form:
+      back: 回到首頁
+      <<: *button
     create:
       success: 任務新增成功
       failure: 任務新增失敗

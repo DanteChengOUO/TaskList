@@ -3,24 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Sorting missions feature', type: :feature do
-  def fill_in_login_form(user)
-    fill_in User.human_attribute_name(:email), with: user.email
-    fill_in User.human_attribute_name(:password), with: user.password
-  end
-
   subject { page }
-  let(:user) { create(:user) }
-
-  before do
-    visit login_path
-    fill_in_login_form(user)
-    click_button I18n.t('sessions.new.login')
-  end
 
   describe 'Sorting missions' do
-    let!(:first_mission) { create(:mission, created_at: DateTime.now, ended_at: DateTime.now + 1, user: user) }
-    let!(:second_mission) { create(:mission, created_at: DateTime.now + 1, ended_at: DateTime.now + 2, user: user) }
-    let!(:third_mission) { create(:mission, created_at: DateTime.now + 2, ended_at: DateTime.now + 3, user: user) }
+    let!(:first_mission) { create(:mission, created_at: DateTime.now, ended_at: DateTime.now + 1) }
+    let!(:second_mission) { create(:mission, created_at: DateTime.now + 1, ended_at: DateTime.now + 2) }
+    let!(:third_mission) { create(:mission, created_at: DateTime.now + 2, ended_at: DateTime.now + 3) }
 
     context 'when visiting mission list' do
       before { visit missions_path }

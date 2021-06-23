@@ -3,33 +3,21 @@
 require 'rails_helper'
 
 RSpec.describe 'Searching missions feature', type: :feature do
-  def fill_in_login_form(user)
-    fill_in User.human_attribute_name(:email), with: user.email
-    fill_in User.human_attribute_name(:password), with: user.password
-  end
-
   subject { page }
-  let(:user) { create(:user) }
-
-  before do
-    visit login_path
-    fill_in_login_form(user)
-    click_button I18n.t('sessions.new.login')
-  end
 
   describe 'Searching missions' do
     describe 'Searching by status' do
       describe 'Pending status' do
-        let!(:processing_mission) { create(:mission, :processing, user: user) }
-        let!(:completed_mission) { create(:mission, :completed, user: user) }
+        let!(:processing_mission) { create(:mission, :processing) }
+        let!(:completed_mission) { create(:mission, :completed) }
 
         context 'When has missions match condition' do
-          let!(:pending_mission) { create(:mission, :pending, user: user) }
+          let!(:pending_mission) { create(:mission, :pending) }
 
           before do
             visit missions_path
             select(Mission.human_enum_name(:statuses, :pending), from: 'q[status_eq]')
-            click_button I18n.t('missions.index.submit')
+            click_button I18n.t('missions.button.submit')
           end
 
           it_behaves_like 'a missions list page'
@@ -40,7 +28,7 @@ RSpec.describe 'Searching missions feature', type: :feature do
           before do
             visit missions_path
             select(Mission.human_enum_name(:statuses, :pending), from: 'q[status_eq]')
-            click_button I18n.t('missions.index.submit')
+            click_button I18n.t('missions.button.submit')
           end
 
           it_behaves_like 'a missions list page'
@@ -49,16 +37,16 @@ RSpec.describe 'Searching missions feature', type: :feature do
       end
 
       describe 'processing status' do
-        let!(:pending_mission) { create(:mission, :pending, user: user) }
-        let!(:completed_mission) { create(:mission, :completed, user: user) }
+        let!(:pending_mission) { create(:mission, :pending) }
+        let!(:completed_mission) { create(:mission, :completed) }
 
         context 'When has missions match condition' do
-          let!(:processing_mission) { create(:mission, :processing, user: user) }
+          let!(:processing_mission) { create(:mission, :processing) }
 
           before do
             visit missions_path
             select(Mission.human_enum_name(:statuses, :processing), from: 'q[status_eq]')
-            click_button I18n.t('missions.index.submit')
+            click_button I18n.t('missions.button.submit')
           end
 
           it_behaves_like 'a missions list page'
@@ -69,7 +57,7 @@ RSpec.describe 'Searching missions feature', type: :feature do
           before do
             visit missions_path
             select(Mission.human_enum_name(:statuses, :processing), from: 'q[status_eq]')
-            click_button I18n.t('missions.index.submit')
+            click_button I18n.t('missions.button.submit')
           end
 
           it_behaves_like 'a missions list page'
@@ -78,16 +66,16 @@ RSpec.describe 'Searching missions feature', type: :feature do
       end
 
       describe 'completed status' do
-        let!(:pending_mission) { create(:mission, :pending, user: user) }
-        let!(:processing_mission) { create(:mission, :processing, user: user) }
+        let!(:pending_mission) { create(:mission, :pending) }
+        let!(:processing_mission) { create(:mission, :processing) }
 
         context 'When has missions match condition' do
-          let!(:completed_mission) { create(:mission, :completed, user: user) }
+          let!(:completed_mission) { create(:mission, :completed) }
 
           before do
             visit missions_path
             select(Mission.human_enum_name(:statuses, :completed), from: 'q[status_eq]')
-            click_button I18n.t('missions.index.submit')
+            click_button I18n.t('missions.button.submit')
           end
 
           it_behaves_like 'a missions list page'
@@ -98,7 +86,7 @@ RSpec.describe 'Searching missions feature', type: :feature do
           before do
             visit missions_path
             select(Mission.human_enum_name(:statuses, :completed), from: 'q[status_eq]')
-            click_button I18n.t('missions.index.submit')
+            click_button I18n.t('missions.button.submit')
           end
 
           it_behaves_like 'a missions list page'
@@ -108,14 +96,14 @@ RSpec.describe 'Searching missions feature', type: :feature do
     end
 
     describe 'Searching by title' do
-      let!(:pending_mission) { create(:mission, :pending, user: user, title: 'Test_one') }
-      let!(:processing_mission) { create(:mission, :processing, user: user, title: 'Test_two') }
-      let!(:completed_mission) { create(:mission, :completed, user: user, title: 'Test_three') }
+      let!(:pending_mission) { create(:mission, :pending, title: 'Test_one') }
+      let!(:processing_mission) { create(:mission, :processing, title: 'Test_two') }
+      let!(:completed_mission) { create(:mission, :completed, title: 'Test_three') }
 
       before do
         visit missions_path
         fill_in('q[title_cont_any]', with: title_string)
-        click_button I18n.t('missions.index.submit')
+        click_button I18n.t('missions.button.submit')
       end
 
       context 'When has missions match condition' do
@@ -135,18 +123,18 @@ RSpec.describe 'Searching missions feature', type: :feature do
 
     describe 'Searching by status and title' do
       describe 'match condition with title' do
-        let!(:pending_mission) { create(:mission, :pending, user: user, title: 'Test_one') }
-        let!(:processing_mission) { create(:mission, :processing, user: user, title: 'Test_two') }
+        let!(:pending_mission) { create(:mission, :pending, title: 'Test_one') }
+        let!(:processing_mission) { create(:mission, :processing, title: 'Test_two') }
         let(:string_title) { 'test' }
 
         context 'when status match condition' do
-          let!(:completed_mission) { create(:mission, :completed, user: user, title: 'Test_three') }
+          let!(:completed_mission) { create(:mission, :completed, title: 'Test_three') }
 
           before do
             visit missions_path
             select(Mission.human_enum_name(:statuses, :completed), from: 'q[status_eq]')
             fill_in('q[title_cont_any]', with: string_title)
-            click_button I18n.t('missions.index.submit')
+            click_button I18n.t('missions.button.submit')
           end
 
           it_behaves_like 'a missions list page'
@@ -159,7 +147,7 @@ RSpec.describe 'Searching missions feature', type: :feature do
             visit missions_path
             select(Mission.human_enum_name(:statuses, :completed), from: 'q[status_eq]')
             fill_in('q[title_cont_any]', with: string_title)
-            click_button I18n.t('missions.index.submit')
+            click_button I18n.t('missions.button.submit')
           end
 
           it_behaves_like 'a missions list page'
@@ -169,14 +157,14 @@ RSpec.describe 'Searching missions feature', type: :feature do
       end
 
       context 'when has\'t match condition with title' do
-        let!(:completed_mission) { create(:mission, :completed, user: user, title: 'Test_three') }
+        let!(:completed_mission) { create(:mission, :completed, title: 'Test_three') }
         let(:string_title) { 'some_nonexistent_title' }
 
         before do
           visit missions_path
           select(Mission.human_enum_name(:statuses, :completed), from: 'q[status_eq]')
           fill_in('q[title_cont_any]', with: string_title)
-          click_button I18n.t('missions.index.submit')
+          click_button I18n.t('missions.button.submit')
         end
 
         it_behaves_like 'a missions list page'

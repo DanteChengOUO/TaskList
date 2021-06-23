@@ -49,37 +49,9 @@ en:
             password:
               <<: *blank
 
-  button: &button
-    submit: Submit
-  shared:
-    form:
-      link:
-        index: Back to Mission list
-      <<: *button
-    navbar:
-      link:
-        delete_user: Delete user information
-        edit_user: Edit user information
-        logout: Logout
-      <<: *button
-      alert:
-        logout: Are you sure you want to logout?
-  sessions:
-    new:
-      title: Login Page
-      email: E-mail
-      password: Password
-      link:
-        register: Register
-      login: Login
-    create:
-      success: "Wellcome %{name}, Login success"
-      failure: Login failure
-    destroy:
-      success: Logout success
-      failure: Logout failure
   missions:
-    failure: Please login before visit Mission list
+    button: &button
+      submit: Submit
     index:
       title: Mission List
       field: "Sorting Field :"
@@ -98,8 +70,13 @@ en:
         deletion: Are you sure you want to delete?
     new:
       title: Create mission
+      <<: *button
     edit:
       title: Edit mission
+      <<: *button
+    form:
+      back: Back to Home
+      <<: *button
     create:
       success: Create mission success
       failure: Create mission fail
