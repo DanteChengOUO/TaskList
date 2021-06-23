@@ -15,13 +15,17 @@
     <%= form.text_field :name, class:'rounded-full px-2 bg-gray-900' %>
   </div>
   <div class="m-1 w-2/3 mx-auto">
-   <%= form.label :email, User.human_attribute_name(:email)%>
-  <%= form.text_field :email, class:'rounded-full px-2 bg-gray-900' %>
+    <%= form.label :email, User.human_attribute_name(:email)%>
+    <%= form.text_field :email, class:'rounded-full px-2 bg-gray-900' %>
  </div>
  <div class="m-1 w-2/3 mx-auto">
-  <%= form.label :password, User.human_attribute_name(:password)%>
-  <%= form.text_field :password, class:'rounded-full px-2 bg-gray-900' %>
+    <%= form.label :password, User.human_attribute_name(:password)%>
+    <%= form.text_field :password, class:'rounded-full px-2 bg-gray-900' %>
  </div>
+  <div class="m-1 w-2/3 mx-auto">
+    <%= form.label :password_confirmation, '密碼確認' %>
+    <%= form.text_field :password_confirmation, class:'rounded-full px-2 w-2/3 bg-gray-900' %>
+  </div>
   <div class="text-center w-1/2 mx-auto mt-6">
     <%= form.submit t('.submit'), class:'cursor-pointer bg-green-500 rounded-full px-2' %>
   </div>
