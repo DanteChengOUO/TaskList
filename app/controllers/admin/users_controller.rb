@@ -36,9 +36,9 @@ module Admin
     end
 
     def destroy
-      if @user == current_user
-        redirect_to admin_users_path, notice: '不能刪除自己'
-      elsif @user.destroy
+      return redirect_to admin_users_path, notice: t('.self_delete') if @user == current_user
+
+      if @user.destroy
         redirect_to admin_users_path, notice: t('.success')
       else
         redirect_to admin_users_path, notice: t('.failure')
@@ -64,7 +64,7 @@ module Admin
     def redirect_when_not_admin
       return if current_user&.admin?
 
-      redirect_to missions_path, notice: '權限不足，存取失敗'
+      redirect_to missions_path, notice: t('.authorization')
     end
   end
 end

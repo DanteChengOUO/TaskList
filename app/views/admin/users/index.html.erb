@@ -4,7 +4,7 @@
   <thead class="list_head bg-black">
     <tr class="text-center">
       <th class="w-1/12" colspan="2"><%= t('.operating') %></th>
-      <th class="w-1/12"><%= t('.authority') %></th>
+      <th class="w-1/12"><%= User.human_attribute_name(:role) %></th>
       <th class="w-2/12"><%= User.human_attribute_name(:name) %></th>
       <th class="w-2/12"><%= User.human_attribute_name(:email) %></th>
       <th class="w-1/12"><%= t('.count') %></th>

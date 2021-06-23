@@ -27,7 +27,7 @@
     <%= form.text_field :password_confirmation, class:'rounded-full px-2 w-2/3 bg-gray-900' %>
   </div>
   <div class="m-1 w-2/3 mx-auto">
-    <%= form.label :role, '管理權限' %>
+    <%= form.label :role, User.human_attribute_name(:role) %>
     <%= form.select :role, options_for_select([[User.human_enum_name(:roles, :user), :user],
                                                         [User.human_enum_name(:roles, :admin), :admin]],
                                                         @user.role),
