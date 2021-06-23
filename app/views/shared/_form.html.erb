@@ -42,10 +42,10 @@
                                {},
                                {class:'appearance-none cursor-pointer rounded-full px-2 bg-gray-900' } %>
  </div>
-    <%= form.hidden_field :user_id, value: User.last.id %>
+    <%= form.hidden_field :user_id, value: session[:current_user_id] %>
  <div class="mx-auto items-center m-4 flex">
     <div class="text-center w-1/2 ">
-      <div class="bg-red-500 rounded-full mx-auto w-2/3"><%= link_to t('.back'), missions_path %></div>
+      <div class="bg-red-500 rounded-full mx-auto w-2/3"><%= link_to t('.link.index'), missions_path %></div>
     </div>
     <div class="text-center w-1/2">
       <%= form.submit t('.submit'), class:'cursor-pointer bg-green-500 rounded-full px-2' %>

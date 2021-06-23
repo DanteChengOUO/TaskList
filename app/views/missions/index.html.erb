@@ -57,7 +57,7 @@
       <tr class="text-center">
         <td><div class="bg-green-500 rounded-full w-10 mx-auto"><%= link_to t('.link.edit'), edit_mission_path(mission) %></td></div>
         <td><div class="bg-red-500 rounded-full w-10 mx-auto"><%= link_to t('.link.delete'), mission_path(mission), method: :delete,
-                                                                  data: { confirm: t('.alert.deletion') } %></td></div>
+                                                                                                                    data: { confirm: t('.alert.deletion') } %></td></div>
         <td class="status"><%= Mission.human_enum_name(:statuses, mission.status) %></td>
         <td class="priority"><%= Mission.human_enum_name(:priorities, mission.priority) %></td>
         <td class="title text-left pl-2"><%= mission.title %></td>
