@@ -2,6 +2,8 @@
 
 class Mission < ApplicationRecord
   belongs_to :user
+  has_many :tag_matchings, dependent: :destroy
+  has_many :tags, through: :missions_tags
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :content, :status, :priority, :user_id, presence: true
