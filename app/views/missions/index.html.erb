@@ -7,7 +7,8 @@
     <%= search_form_for @query , class:"search_div grid grid-cols-6 sm:items-center" do |form|  %>
       <span class="mx-4 col-span-2">
         <%= form.label :title, Mission.human_attribute_name(:title) %>
-        <%= form.search_field :title_cont_any, class:'rounded-full px-2 bg-gray-900', placeholder: "Search for ... " %></span>
+        <%= form.search_field :title_cont_any, class:'rounded-full px-2 bg-gray-900', placeholder: "Search for ... " %>
+      </span>
       <span class="mx-4">
         <%= form.label :status, Mission.human_attribute_name(:status) %>
         <%= form.select :status_eq, options_for_select([[t('.status.all'), nil],
@@ -17,7 +18,8 @@
                                                        ],
                                                        params[:q].present? ? params[:q][:status_eq] : nil),
                                     {},
-                                    {class:'appearance-none cursor-pointer rounded-full px-2 bg-gray-900'} %></span>
+                                    {class:'appearance-none cursor-pointer rounded-full px-2 bg-gray-900'} %>
+      </span>
       <span class="mx-4">
         <%= label_tag(:field, t('.field')) %>
         <%= select_tag(:field, options_for_select([[Mission.human_attribute_name(:created_at), :created_at],
@@ -25,16 +27,19 @@
                                                    [Mission.human_attribute_name(:priority), :priority]
                                                   ],
                                                   params[:field]),
-                                                  {class:'appearance-none cursor-pointer rounded-full px-2 bg-gray-900'}) %></span>
+                                                  {class:'appearance-none cursor-pointer rounded-full px-2 bg-gray-900'}) %>
+      </span>
       <span class="mx-4">
         <%= label_tag(:order, t('.order')) %>
         <%= select_tag(:order, options_for_select([[t('.descending'), :DESC],
                                                    [t('.ascending'), :ASC]
                                                   ],
                                                   params[:order]),
-                                                  {class:'appearance-none cursor-pointer rounded-full px-2 bg-gray-900'}) %></span>
+                                                  {class:'appearance-none cursor-pointer rounded-full px-2 bg-gray-900'}) %>
+      </span>
       <span class="mx-4" >
-        <%= submit_tag(t('.submit'), class:'cursor-pointer bg-green-500 rounded-full px-2') %></span>
+        <%= submit_tag(t('.submit'), class:'cursor-pointer bg-green-500 rounded-full px-2') %>
+      </span>
     <% end %>
   </div>
 </div>
@@ -57,11 +62,22 @@
       <tr class="text-center">
         <td><div class="bg-green-500 rounded-full w-10 mx-auto"><%= link_to t('.link.edit'), edit_mission_path(mission) %></div></td>
         <td><div class="bg-red-500 rounded-full w-10 mx-auto"><%= link_to t('.link.delete'), mission_path(mission), method: :delete,
-                                                                                                                    data: { confirm: t('.alert.deletion') } %></div></td>
+                                                                                                                    data: { confirm: t('.alert.deletion') } %>
+            </div>
+        </td>
         <td class="status"><%= Mission.human_enum_name(:statuses, mission.status) %></td>
         <td class="priority"><%= Mission.human_enum_name(:priorities, mission.priority) %></td>
         <td class="title text-left pl-2"><%= mission.title %></td>
-        <td class="text-left pl-2"><%= mission.content %></td>
+        <td class="text-left pl-2">
+          <div>
+            <%= mission.content %>
+          </div>
+          <div>
+            <% mission.tags.each do |tag| %>
+              <span class="rounded-full bg-yellow-500 px-2"><%= tag.label %></span>
+            <% end %>
+          </div>
+        </td>
         <td><%= l(mission.started_at, time: :default) if mission.started_at %></td>
         <td><%= l(mission.ended_at, time: :default) if mission.ended_at %></td>
         <td><%= l(mission.created_at, time: :default) %></td>
@@ -69,7 +85,6 @@
     <% end %>
   </tbody>
 </table>
-
 
 <div class="text-center bg-black">
   <%= paginate @missions %>
