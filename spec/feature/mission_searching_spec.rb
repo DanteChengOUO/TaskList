@@ -107,26 +107,40 @@ RSpec.describe 'Searching missions feature', type: :feature do
       end
     end
 
-    describe 'Searching by title' do
+    describe 'Searching by title or tag' do
       let!(:pending_mission) { create(:mission, :pending, user: user, title: 'Test_one') }
       let!(:processing_mission) { create(:mission, :processing, user: user, title: 'Test_two') }
       let!(:completed_mission) { create(:mission, :completed, user: user, title: 'Test_three') }
 
       before do
         visit missions_path
-        fill_in('q[title_cont_any]', with: title_string)
+        fill_in('q[title_or_tags_label_cont_any]', with: search_string)
         click_button I18n.t('missions.index.submit')
       end
 
-      context 'When has missions match condition' do
-        let(:title_string) { 'test_t' }
+      context 'When has missions match title' do
+        let(:search_string) { 'test_t' }
 
         it_behaves_like 'a missions list page'
         it { is_expected.to have_selector('tbody > tr > td.title', count: 2) }
       end
 
-      context 'When has\'t missions match condition' do
-        let(:title_string) { 'some_nonexistent_title' }
+      context 'When has\'t missions match title' do
+        let(:search_string) { 'some_nonexistent_title' }
+
+        it_behaves_like 'a missions list page'
+        it { is_expected.to have_selector('tbody > tr > td.title', count: 0) }
+      end
+
+      context 'When has missions match tag' do
+        let(:search_string) { 'Rails' }
+
+        it_behaves_like 'a missions list page'
+        it { is_expected.to have_selector('tbody > tr > td.title', count: 3) }
+      end
+
+      context 'When has\'t missions match tag' do
+        let(:search_string) { 'some_nonexistent_title' }
 
         it_behaves_like 'a missions list page'
         it { is_expected.to have_selector('tbody > tr > td.title', count: 0) }
@@ -145,7 +159,7 @@ RSpec.describe 'Searching missions feature', type: :feature do
           before do
             visit missions_path
             select(Mission.human_enum_name(:statuses, :completed), from: 'q[status_eq]')
-            fill_in('q[title_cont_any]', with: string_title)
+            fill_in('q[title_or_tags_label_cont_any]', with: string_title)
             click_button I18n.t('missions.index.submit')
           end
 
@@ -158,7 +172,7 @@ RSpec.describe 'Searching missions feature', type: :feature do
           before do
             visit missions_path
             select(Mission.human_enum_name(:statuses, :completed), from: 'q[status_eq]')
-            fill_in('q[title_cont_any]', with: string_title)
+            fill_in('q[title_or_tags_label_cont_any]', with: string_title)
             click_button I18n.t('missions.index.submit')
           end
 
@@ -175,7 +189,7 @@ RSpec.describe 'Searching missions feature', type: :feature do
         before do
           visit missions_path
           select(Mission.human_enum_name(:statuses, :completed), from: 'q[status_eq]')
-          fill_in('q[title_cont_any]', with: string_title)
+          fill_in('q[title_or_tags_label_cont_any]', with: string_title)
           click_button I18n.t('missions.index.submit')
         end
 

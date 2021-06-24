@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 2021_06_23_194608) do
   end
 
   create_table "missions_tags", force: :cascade do |t|
-    t.integer "tag_id"
-    t.integer "mission_id"
+    t.integer "tag_id", null: false
+    t.integer "mission_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
