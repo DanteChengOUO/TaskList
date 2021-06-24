@@ -6,8 +6,8 @@
   <div class="w-3/4 sm:11/12">
     <%= search_form_for @query , class:"search_div grid grid-cols-6 sm:items-center" do |form|  %>
       <span class="mx-4 col-span-2">
-        <%= form.label :title, '搜尋列' %>
-        <%= form.search_field :title_or_tags_label_cont_any, class:'rounded-full px-2 bg-gray-900 w-2/3' , placeholder: "Search for Title or Tag ... " %>
+        <%= form.label :title, t('.search') %>
+        <%= form.search_field :title_or_tags_label_cont_any, class:'rounded-full px-2 bg-gray-900 w-2/3' , placeholder: t('.placeholder') %>
       </span>
       <span class="mx-4">
         <%= form.label :status, Mission.human_attribute_name(:status) %>

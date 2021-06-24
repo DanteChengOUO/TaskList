@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-    redirect_to login_path, notice: t('.failure') if current_user.blank?
+    redirect_to login_path, notice: t('.login_failure') if current_user.blank?
   end
 
   def authorize_admin!
