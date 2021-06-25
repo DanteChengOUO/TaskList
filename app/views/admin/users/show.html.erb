@@ -11,14 +11,14 @@
 <table class="w-full">
   <thead class="list_head bg-black">
     <tr class="text-center">
-      <th class="w-1/12" colspan="2">任務操作</th>
-      <th class="w-1/12">任務狀態</th>
-      <th class="w-1/12">任務優先度</th>
-      <th class="w-2/12">標題</th>
-      <th class="w-4/12">內容</th>
-      <th class="w-1/12">起始時間</th>
-      <th class="w-1/12">結束時間</th>
-      <th class="w-1/12">建立時間</th>
+      <th class="w-1/12" colspan="2"><%= t('.operating')%></th>
+      <th class="w-1/12"><%= Mission.human_attribute_name(:status) %></th>
+      <th class="w-1/12"><%= Mission.human_attribute_name(:priority) %></th>
+      <th class="w-2/12"><%= Mission.human_attribute_name(:title) %></th>
+      <th class="w-4/12"><%= Mission.human_attribute_name(:content) %></th>
+      <th class="w-1/12"><%= Mission.human_attribute_name(:started_at) %></th>
+      <th class="w-1/12"><%= Mission.human_attribute_name(:ended_at) %></th>
+      <th class="w-1/12"><%= Mission.human_attribute_name(:created_at) %></th>
     </tr>
   </thead>
   <tbody class="list_body">

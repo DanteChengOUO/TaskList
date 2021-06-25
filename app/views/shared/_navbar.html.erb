@@ -1,5 +1,5 @@
 <div class="bg-gray-cool flex justify-end h-8" >
-  <% if current_user %>
+  <% if current_user&.role == 'admin' %>
     <% if request.path == admin_users_path %>
       <div class="text-center bg-blue-500 w-1/12 rounded-full my-auto">
         <%= link_to "#{current_user.name}", missions_path %>
@@ -23,6 +23,14 @@
                                         data: { confirm: t('.alert.logout') } %>
       </div>
     <% end %>
+  <% elsif current_user&.role == 'user' %>
+      <div class="text-center bg-blue-500 w-1/12 rounded-full my-auto">
+        <%= current_user.name %>
+      </div>
+      <div class="text-center bg-red-500 w-1/12 rounded-full my-auto">
+        <%= link_to t('.link.logout'), logout_path, method: :delete,
+                                        data: { confirm: t('.alert.logout') } %>
+      </div>
   <% else %>
     <% if request.path == login_path %>
       <div class="bg-gray-dark w-full"></div>

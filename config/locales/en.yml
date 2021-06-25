@@ -24,6 +24,10 @@ en:
         email: E-mail
         password: Password
         password_confirmation: Confirmation
+        role: Role
+        roles:
+          admin: Admin
+          user: User
     errors:
       models:
         blank: &blank
@@ -47,11 +51,14 @@ en:
               <<: *blank
             email:
               <<: *blank
+              taken: already used
             password:
               <<: *blank
             password_confirmation:
+              confirmation: Different from password, please confirm
               <<: *blank
-
+            role:
+              admin_less_than_one: Need one admin at least
   button: &button
     submit: Submit
   login: &login
@@ -73,8 +80,6 @@ en:
       title: Login Page
       email: E-mail
       password: Password
-      link:
-        register: Register
       <<: *login
     create:
       success: "Wellcome %{name}, Login success"
@@ -91,18 +96,18 @@ en:
         title: User List
         operating: Account operating
         count: Mission amount
-        authority: Admin Authority
-        open: Open
-        close: Close
         link:
           <<: *login
           edit: Edit
           delete: delete
         alert:
           deletion: Are you sure you want to delete user?
+        authorization: Insufficient permissions, access failed
       show:
         title: Missions List(Viewing mode)
+        operating: Operating
       destroy:
+        self_delete: Could't delete youself
         success: Delete user success
         failure: Delete user fail
       edit:

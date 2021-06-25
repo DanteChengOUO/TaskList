@@ -24,6 +24,10 @@ zh-TW:
         email: 信箱
         password: 密碼
         password_confirmation: 密碼確認
+        role: 身份
+        roles:
+          admin: 管理員
+          user: 使用者
     errors:
       models:
         blank: &blank
@@ -51,7 +55,10 @@ zh-TW:
             password:
               <<: *blank
             password_confirmation:
+              confirmation: 與密碼不同，請確認
               <<: *blank
+            role:
+              admin_less_than_one: 管理員不得少於一人
   button: &button
     submit: 送出
   login: &login
@@ -73,8 +80,6 @@ zh-TW:
       title: 登入頁面
       email: 信箱
       password: 密碼
-      link:
-        register: 註冊
       <<: *login
     create:
       success: "歡迎 %{name}, 登入成功"
@@ -91,18 +96,18 @@ zh-TW:
         title: 使用者清單
         operating: 帳戶操作
         count: 任務數量
-        authority: 管理員權限
-        open: 已開放
-        close: 已關閉
         link:
           <<: *login
           edit: 修改
           delete: 刪除
         alert:
           deletion: 確認刪除使用者？
+        authorization: 權限不足，存取失敗
       show:
         title: 任務列表(觀察模式)
+        operating: 任務操作
       destroy:
+        self_delete: 不能刪除自己
         success: 使用者已移除
         failure: 使用者移除失敗
       edit:

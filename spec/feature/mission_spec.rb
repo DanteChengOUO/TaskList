@@ -16,7 +16,7 @@ RSpec.describe 'Missions List', type: :feature do
   end
 
   subject { page }
-  let(:user) { create(:user) }
+  let(:user) { create(:user, role: :admin) }
 
   before do
     visit login_path

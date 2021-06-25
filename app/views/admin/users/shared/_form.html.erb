@@ -8,7 +8,7 @@
   <% end %>
 </div>
 
-<div class="form bg-gray-light lg:w-1/4 sm:w-2/5 mx-auto mt-10 h-40 py-2 rounded-lg">
+<div class="form bg-gray-light lg:w-1/4 sm:w-2/5 mx-auto mt-10 h-52 py-2 rounded-lg">
   <%= form_for([:admin, @user]) do |form| %>
   <div class="m-1 w-2/3 mx-auto">
     <%= form.label :name, User.human_attribute_name(:name)%>
@@ -26,7 +26,15 @@
     <%= form.label :password_confirmation, User.human_attribute_name(:password_confirmation) %>
     <%= form.text_field :password_confirmation, class:'rounded-full px-2 w-2/3 bg-gray-900' %>
   </div>
-  <div class="text-center w-1/2 mx-auto mt-6">
+  <div class="m-1 w-2/3 mx-auto">
+    <%= form.label :role, User.human_attribute_name(:role) %>
+    <%= form.select :role, options_for_select([[User.human_enum_name(:roles, :user), :user],
+                                                        [User.human_enum_name(:roles, :admin), :admin]],
+                                                        @user.role),
+                                    {},
+                                    {class:'appearance-none cursor-pointer rounded-full px-2 w-2/3 bg-gray-900' } %>
+  </div>
+  <div class="text-center w-1/2 mx-auto mt-4">
     <%= form.submit t('.submit'), class:'cursor-pointer bg-green-500 rounded-full px-2' %>
   </div>
   <% end %>

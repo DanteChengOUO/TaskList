@@ -44,7 +44,7 @@ shared_examples 'a page that shows the missions' do
   it 'shows the mission' do
     is_expected.to have_content(I18n.t('missions.index.link.edit'))
     is_expected.to have_content(I18n.t('missions.index.link.delete'))
-    is_expected.to have_selector('tbody > tr', text: Mission.human_enum_name(:statuses, mission.status.to_sym))
+    is_expected.to have_selector('tbody > tr', text: Mission.human_enum_name(:statuses, mission.status))
     is_expected.to have_content(mission.title)
     is_expected.to have_content(mission.content)
     is_expected.to have_content(I18n.l(mission.started_at, time: :default))
