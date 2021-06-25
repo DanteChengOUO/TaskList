@@ -3,6 +3,8 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
 
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
   private
 
   def current_user
@@ -19,5 +21,9 @@ class ApplicationController < ActionController::Base
     return true if current_user&.role == 'admin'
 
     false
+  end
+
+  def record_not_found
+    render file: Rails.root.join('public/404.htm'), status: :not_found, layout: false
   end
 end
