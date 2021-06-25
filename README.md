@@ -15,6 +15,9 @@ Mission management system
 ## Database
 - PostgreSQL 11
 
+## Page Design
+- TailWandCSS 2.2.4
+
 ## Heroku deployment
 
 ### Stack
