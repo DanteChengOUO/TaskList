@@ -2,6 +2,7 @@
 
 Mission management system
 
+![image](https://user-images.githubusercontent.com/73519611/123459176-868ed980-d618-11eb-80df-afeaf5a51a67.png)
 ## Mission-List Website Link
 
 [Here](https://mission-list-0401.herokuapp.com/)
@@ -10,6 +11,9 @@ Mission management system
 
 - Ruby: 2.7.0
 - Rails: 6.0.3
+
+## Database
+- PostgreSQL 11
 
 ## Heroku deployment
 
@@ -55,14 +59,44 @@ Mission management system
   | email    | _string_  |
   | password | _string_  |
 
+- Tags
+
+  | Column   | Data Type |
+  | -------- | --------- |
+  | id       | _bigint_  |
+  | label    | _string_  |
+
+- Missions_Tags
+
+  | Column   | Data Type |
+  | -------- | --------- |
+  | id       | _bigint_  |
+  |mission_id     | _ingeter_  |
+  | tag_id    |  _ingeter_ |
+
 ## Getting Started
+1. `$ rails db:create` 
+2. `$ rails db` 
+3. `$ rails db:migrate` 
+4. `$ rails server`
+5. visit `localhost:3000`
+6. deault account: email: `admin@task.list` password: `123123`
 
 ### Development
-
-- TODO: add rundown for development
 
 - Set up Git hook
 
 ```sh
 $ bundle exec overcommit --install
 ```
+#### Gem  
+|Name|Useage|
+|----|----|
+| Ruboco |  [Ruby guidelines](https://rubystyle.guide/) |
+|  Travis CI | Continuous Integration  |
+| Ransack | Search feature|
+| Kaminari | Pagination |
+| Bcrypt | Password encryption |
+| Factory_bot | Rspec Helper |
+| Faker | Fake information |
+
