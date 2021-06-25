@@ -21,7 +21,7 @@ class User < ApplicationRecord
     return unless admin?
     return unless User.where(role: :admin).size == 1
 
-    error_message = I18n.t('activerecord.errors.models.user.attributes.admin_less_than_one')
+    error_message = I18n.t('activerecord.errors.models.user.attributes.role.admin_less_than_one')
     errors.add(:role, error_message)
     throw :abort
   end
@@ -30,7 +30,7 @@ class User < ApplicationRecord
     return unless role_change_to_user?(self)
     return unless User.where(role: :admin).size == 1
 
-    error_message = I18n.t('activerecord.errors.models.user.attributes.admin_less_than_one')
+    error_message = I18n.t('activerecord.errors.models.user.attributes.role.admin_less_than_one')
     errors.add(:role, error_message)
     throw :abort
   end

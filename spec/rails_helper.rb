@@ -82,5 +82,6 @@ RSpec.configure do |config|
 
   config.append_after(:each) do
     DatabaseCleaner.clean
+    Faker::UniqueGenerator.clear
   end
 end
