@@ -11,7 +11,7 @@ class MissionsQueryService
 
   def result
     query.sorts = sorts_builder(params)
-    query.result.page(params[:page]).includes(:user)
+    query.result.page(params[:page]).includes(:user, :tags)
   end
 
   def valid_params?
