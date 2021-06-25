@@ -23,6 +23,7 @@ en:
         name: Name
         email: E-mail
         password: Password
+        password_confirmation: Confirmation
     errors:
       models:
         blank: &blank
@@ -48,20 +49,23 @@ en:
               <<: *blank
             password:
               <<: *blank
+            password_confirmation:
+              <<: *blank
 
   button: &button
     submit: Submit
+  login: &login
+    login: Login
   shared:
-    form:
-      link:
-        index: Back to Mission list
-      <<: *button
     navbar:
       link:
-        delete_user: Delete user information
+        register: Register
         edit_user: Edit user information
         logout: Logout
-      <<: *button
+        back:
+          login: Back to Login
+          admin: Back to admin
+        <<: *login
       alert:
         logout: Are you sure you want to logout?
   sessions:
@@ -71,16 +75,54 @@ en:
       password: Password
       link:
         register: Register
-      login: Login
+      <<: *login
     create:
       success: "Wellcome %{name}, Login success"
       failure: Login failure
     destroy:
       success: Logout success
       failure: Logout failure
+  admin:
+    users:
+      shared:
+        form:
+          <<: *button
+      index:
+        title: User List
+        operating: Account operating
+        count: Mission amount
+        authority: Admin Authority
+        open: Open
+        close: Close
+        link:
+          <<: *login
+          edit: Edit
+          delete: delete
+        alert:
+          deletion: Are you sure you want to delete user?
+      show:
+        title: Missions List(Viewing mode)
+      destroy:
+        success: Delete user success
+        failure: Delete user fail
+      edit:
+        title: User Edition
+      new:
+        title: Registration
+      create:
+        success: Register user success
+        failure: Register user fail
+      update:
+        success: Edit user information success
+        failure: Edit user information fail
   missions:
-    failure: Please login before visit Mission list
+    shared:
+      form:
+        link:
+          index: back to Misssion List
+        <<: *button
     index:
+      operating: Operating
       title: Mission List
       field: "Sorting Field :"
       order: "Sorting Way :"
@@ -96,6 +138,7 @@ en:
         delete: Delete
       alert:
         deletion: Are you sure you want to delete?
+    failure: Please login before visit Mission list
     new:
       title: Create mission
     edit:

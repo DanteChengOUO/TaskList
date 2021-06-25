@@ -2,8 +2,10 @@
 
 FactoryBot.define do
   factory :user do
+    password = Faker::Lorem.characters(number: 8)
     name { Faker::Name.first_name }
     email { Faker::Internet.email }
-    password { Faker::Lorem.characters(number: 8) }
+    password { password }
+    password_confirmation { password }
   end
 end

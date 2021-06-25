@@ -1,0 +1,33 @@
+<div class="w-1/4 mx-auto h-28 p-1">
+  <% if @user.errors.any? %>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li class="bg-red-500 text-center rounded-lg m-1"><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<div class="form bg-gray-light lg:w-1/4 sm:w-2/5 mx-auto mt-10 h-40 py-2 rounded-lg">
+  <%= form_for([:admin, @user]) do |form| %>
+  <div class="m-1 w-2/3 mx-auto">
+    <%= form.label :name, User.human_attribute_name(:name)%>
+    <%= form.text_field :name, class:'rounded-full px-2 bg-gray-900' %>
+  </div>
+  <div class="m-1 w-2/3 mx-auto">
+    <%= form.label :email, User.human_attribute_name(:email)%>
+    <%= form.text_field :email, class:'rounded-full px-2 bg-gray-900' %>
+ </div>
+ <div class="m-1 w-2/3 mx-auto">
+    <%= form.label :password, User.human_attribute_name(:password)%>
+    <%= form.text_field :password, class:'rounded-full px-2 bg-gray-900' %>
+ </div>
+  <div class="m-1 w-2/3 mx-auto">
+    <%= form.label :password_confirmation, User.human_attribute_name(:password_confirmation) %>
+    <%= form.text_field :password_confirmation, class:'rounded-full px-2 w-2/3 bg-gray-900' %>
+  </div>
+  <div class="text-center w-1/2 mx-auto mt-6">
+    <%= form.submit t('.submit'), class:'cursor-pointer bg-green-500 rounded-full px-2' %>
+  </div>
+  <% end %>
+</div>

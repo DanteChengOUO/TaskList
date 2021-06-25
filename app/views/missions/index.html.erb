@@ -42,22 +42,22 @@
 <table class="w-full">
   <thead class="list_head bg-black">
     <tr class="text-center">
-      <th class="w-1/12" colspan="2">任務操作</th>
-      <th class="w-1/12">任務狀態</th>
-      <th class="w-1/12">任務優先度</th>
-      <th class="w-2/12">標題</th>
-      <th class="w-4/12">內容</th>
-      <th class="w-1/12">起始時間</th>
-      <th class="w-1/12">結束時間</th>
-      <th class="w-1/12">建立時間</th>
+      <th class="w-1/12" colspan="2"><%= t('.operating')%></th>
+      <th class="w-1/12"><%= Mission.human_attribute_name(:status) %></th>
+      <th class="w-1/12"><%= Mission.human_attribute_name(:priority) %></th>
+      <th class="w-2/12"><%= Mission.human_attribute_name(:title) %></th>
+      <th class="w-4/12"><%= Mission.human_attribute_name(:content) %></th>
+      <th class="w-1/12"><%= Mission.human_attribute_name(:started_at) %></th>
+      <th class="w-1/12"><%= Mission.human_attribute_name(:ended_at) %></th>
+      <th class="w-1/12"><%= Mission.human_attribute_name(:created_at) %></th>
     </tr>
   </thead>
   <tbody class="list_body">
     <% @missions.each do |mission| %>
       <tr class="text-center">
-        <td><div class="bg-green-500 rounded-full w-10 mx-auto"><%= link_to t('.link.edit'), edit_mission_path(mission) %></td></div>
+        <td><div class="bg-green-500 rounded-full w-10 mx-auto"><%= link_to t('.link.edit'), edit_mission_path(mission) %></div></td>
         <td><div class="bg-red-500 rounded-full w-10 mx-auto"><%= link_to t('.link.delete'), mission_path(mission), method: :delete,
-                                                                                                                    data: { confirm: t('.alert.deletion') } %></td></div>
+                                                                                                                    data: { confirm: t('.alert.deletion') } %></div></td>
         <td class="status"><%= Mission.human_enum_name(:statuses, mission.status) %></td>
         <td class="priority"><%= Mission.human_enum_name(:priorities, mission.priority) %></td>
         <td class="title text-left pl-2"><%= mission.title %></td>

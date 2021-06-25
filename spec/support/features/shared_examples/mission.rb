@@ -30,6 +30,17 @@ shared_examples 'a missions list page' do
 end
 
 shared_examples 'a page that shows the missions' do
+  it 'shows the table head' do
+    is_expected.to have_content(I18n.t('.missions.index.operating'))
+    is_expected.to have_content(Mission.human_attribute_name(:status))
+    is_expected.to have_content(Mission.human_attribute_name(:priority))
+    is_expected.to have_content(Mission.human_attribute_name(:title))
+    is_expected.to have_content(Mission.human_attribute_name(:content))
+    is_expected.to have_content(Mission.human_attribute_name(:started_at))
+    is_expected.to have_content(Mission.human_attribute_name(:ended_at))
+    is_expected.to have_content(Mission.human_attribute_name(:created_at))
+  end
+
   it 'shows the mission' do
     is_expected.to have_content(I18n.t('missions.index.link.edit'))
     is_expected.to have_content(I18n.t('missions.index.link.delete'))

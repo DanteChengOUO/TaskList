@@ -55,7 +55,7 @@ RSpec.describe 'Missions List', type: :feature do
     before do
       visit new_mission_path
       fill_in_form(mission)
-      click_button I18n.t('shared.form.submit')
+      click_button I18n.t('missions.shared.form.submit')
     end
 
     it_behaves_like 'a missions list page'
@@ -69,7 +69,7 @@ RSpec.describe 'Missions List', type: :feature do
       to_be_updated_mission = create(:mission)
       visit edit_mission_path(to_be_updated_mission)
       fill_in_form(mission)
-      click_button I18n.t('shared.form.submit')
+      click_button I18n.t('missions.shared.form.submit')
     end
 
     it_behaves_like 'a missions list page'
