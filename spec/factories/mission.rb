@@ -7,6 +7,7 @@ FactoryBot.define do
     started_at { DateTime.now }
     ended_at { DateTime.now + 1 }
     created_at { DateTime.now }
+    tags { [association(:tag)] }
     association :user
   end
 end

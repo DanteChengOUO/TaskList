@@ -50,7 +50,6 @@ zh-TW:
             name:
               <<: *blank
             email:
-              <<: *blank
               taken: 已經被使用
             password:
               <<: *blank
@@ -93,6 +92,7 @@ zh-TW:
         form:
           <<: *button
       index:
+        login_failure: 請登入前往使用者管理列表
         title: 使用者清單
         operating: 帳戶操作
         count: 任務數量
@@ -121,12 +121,17 @@ zh-TW:
         success: 修改使用者資料成功
         failure: 修改使用者資料失敗
   missions:
+    login_failure: 請登入前往任務列表
     shared:
       form:
+        tag: 標籤
+        placeholder: Rails,Best,....
         link:
           index: 回到任務列表
         <<: *button
     index:
+      search: 搜尋
+      placeholder: Search for Title or Tag ...
       operating: 任務操作
       title: 任務列表
       field: 排序標準
@@ -143,7 +148,6 @@ zh-TW:
         delete: 刪除
       alert:
         deletion: 確認刪除？
-      failure: 請登入前往任務列表
     new:
       title: 新增任務
     edit:

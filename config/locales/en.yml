@@ -93,6 +93,7 @@ en:
         form:
           <<: *button
       index:
+        login_failure: Please login before visit User Management list
         title: User List
         operating: Account operating
         count: Mission amount
@@ -118,15 +119,21 @@ en:
         success: Register user success
         failure: Register user fail
       update:
+        admin_nil: one admin at least
         success: Edit user information success
         failure: Edit user information fail
   missions:
+    login_failure: Please login before visit Mission list
     shared:
       form:
+        tag: Tags
+        placeholder: Rails,Best,....
         link:
           index: back to Misssion List
         <<: *button
     index:
+      search: 搜尋
+      placeholder: Rails,Best,....
       operating: Operating
       title: Mission List
       field: "Sorting Field :"
@@ -143,7 +150,6 @@ en:
         delete: Delete
       alert:
         deletion: Are you sure you want to delete?
-    failure: Please login before visit Mission list
     new:
       title: Create mission
     edit:
