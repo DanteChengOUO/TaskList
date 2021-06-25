@@ -1,8 +1,8 @@
 # README
 
 Mission management system
+![image](https://user-images.githubusercontent.com/73519611/123464475-6f071f00-d61f-11eb-8fa2-e3d0694a3347.png)
 
-![image](https://user-images.githubusercontent.com/73519611/123459176-868ed980-d618-11eb-80df-afeaf5a51a67.png)
 ## Mission-List Website Link
 
 [Here](https://mission-list-0401.herokuapp.com/)
