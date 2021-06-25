@@ -18,6 +18,8 @@ Mission management system
 ## Page Design
 - TailWandCSS 2.2.4
 
+## Continuous Integration
+- Travis CI
 ## Heroku deployment
 
 ### Stack
@@ -96,7 +98,6 @@ $ bundle exec overcommit --install
 |Name|Useage|
 |----|----|
 | Ruboco |  [Ruby guidelines](https://rubystyle.guide/) |
-|  Travis CI | Continuous Integration  |
 | Ransack | Search feature|
 | Kaminari | Pagination |
 | Bcrypt | Password encryption |
