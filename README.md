@@ -97,7 +97,7 @@ $ bundle exec overcommit --install
 #### Gem  
 |Name|Useage|
 |----|----|
-| Ruboco |  [Ruby guidelines](https://rubystyle.guide/) |
+| Rubocop |  [Ruby guidelines](https://rubystyle.guide/) |
 | Ransack | Search feature|
 | Kaminari | Pagination |
 | Bcrypt | Password encryption |
